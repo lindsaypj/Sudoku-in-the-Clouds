@@ -1,0 +1,161 @@
+input {
+    text-align: center;
+    caret-color: transparent;
+}
+
+.cellContainer {
+    position: relative;
+    display: inline-block;
+}
+
+/* Cell Focused Styles */
+input:focus {
+    outline: lightgray solid 3px;
+    outline-offset: -4px;
+    box-shadow: 0px 0px 9px;
+    position:relative;
+    z-index:200;
+}
+.size-4 input:focus {
+    width: 7.3rem;
+    padding-right: 0.2rem;
+}
+
+/* Cell Dimensions */
+.size-4 {
+    width: 7.5rem;
+    height: 7.5rem;
+    line-height: 3ch;
+    font-size: 64px;
+}
+.size-9 {
+    width: 3rem;
+    height: 3rem;
+    line-height: 2ch;
+    font-size: 2.2rem;
+}
+.size-16 {
+    width: 2rem;
+    height: 2rem;
+    line-height: 2ch;
+    font-size: 1.3rem;
+}
+
+/* Cell Background Color */
+.cell-bg-blue {
+    background-color: blue;
+}
+.cell-bg-red {
+    background-color: red;
+}
+.cell-bg-green {
+    background-color: green;
+}
+.cell-bg-yellow {
+    background-color: yellow;
+}
+.cell-bg-orange {
+    background-color: darkorange;
+}
+.cell-bg-magenta {
+    background-color: magenta;
+}
+.cell-bg-cyan {
+    background-color: cyan;
+}
+.cell-bg-lime {
+    background-color: lime;
+}
+.cell-bg-purple {
+    background-color:blueviolet;
+}
+.cell-bg-pink {
+    background-color: deeppink;
+}
+.cell-bg-crimson {
+    background-color: rgb(144, 0, 0);
+}
+.cell-bg-dark-purple {
+    background-color: darkmagenta;
+}
+.cell-bg-dark-cyan {
+    background-color:darkcyan;
+}
+.cell-bg-gray {
+    background-color: gray;
+}
+.cell-bg-navy {
+    background-color: navy;
+}
+.cell-bg-fire {
+    background-color: firebrick;
+}
+
+/* Cell Text Color */
+.cell-text-black {
+    color: black !important;
+}
+.cell-text-white {
+    color: white;
+}
+.cell-text-blue {
+    color: blue;
+}
+.cell-text-red {
+    color: red;
+}
+.cell-text-green {
+    color: green;
+}
+.cell-text-yellow {
+    color: yellow;
+}
+.cell-text-orange {
+    color: darkorange;
+}
+.cell-text-magenta {
+    color: magenta;
+}
+.cell-text-cyan {
+    color: cyan;
+}
+.cell-text-lime {
+    color: lime;
+}
+.cell-text-purple {
+    color: blueviolet;
+}
+.cell-text-pink {
+    color: deeppink;
+}
+.cell-text-crimson {
+    color: rgb(144, 0, 0);
+}
+.cell-text-dark-purple {
+    color: darkmagenta;
+}
+.cell-text-dark-cyan {
+    color: darkcyan;
+}
+.cell-text-gray {
+    color: gray;
+}
+.cell-text-navy {
+    color: navy;
+}
+.cell-text-fire {
+    color:firebrick;
+}
+
+.cellDisplay {
+    position: absolute;
+    display: inline-block;
+    margin: auto;
+    padding: 4px;
+
+    font-weight: 700;
+    color: white;
+    
+    z-index: 201;
+    pointer-events: none;
+}

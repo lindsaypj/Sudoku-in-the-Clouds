@@ -1,23 +1,24 @@
-import logo from './logo.svg';
 import './App.css';
+import React, { useState } from 'react';
+import GameMenu from './components/GameMenu';
+import Testing from './views/Testing';
+
+// Define game modes
+const GameModes = {
+  Sudoku4x4Casual: "casual4x4",
+  Sudoku9x9Casual: "casual9x9",
+  Sudoku16x16Casual: "casual16x16",
+  Testing: "test",
+}
 
 function App() {
+  // Hooks to manage Game State
+  const [gameMode, setGameMode] = useState(GameModes.Testing);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="App bg-light">
+      <GameMenu setGameMode={setGameMode} />
+      <Testing />
     </div>
   );
 }
