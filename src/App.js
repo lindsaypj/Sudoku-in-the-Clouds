@@ -1,7 +1,8 @@
-import './App.css';
 import React, { useState } from 'react';
 import GameMenu from './components/GameMenu';
 import Testing from './views/Testing';
+
+import './styles/css/App.css';
 
 // Define game modes
 const GameModes = {

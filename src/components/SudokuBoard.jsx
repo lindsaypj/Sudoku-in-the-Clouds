@@ -1,8 +1,7 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Cell from "./Cell.jsx";
 
-import '.././css/board.css';
-import { useEffect } from "react";
+import '.././styles/css/board.css';
 
 function SudokuBoard(props) {
     // Hooks to Manage Board state

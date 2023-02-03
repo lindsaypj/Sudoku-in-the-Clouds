@@ -1,6 +1,7 @@
 import React from "react";
 import { useEffect, useState } from "react";
-import '.././css/testconfigurator.css';
+
+import '.././styles/css/testconfigurator.css';
 
 
 function TestConficurator(props) {

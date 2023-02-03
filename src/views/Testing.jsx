@@ -1,8 +1,9 @@
 import React from "react";
 import { useState } from "react";
 import SudokuBoard from "../components/SudokuBoard";
-import ".././css/testing.css";
 import TestConficurator from "../components/TestConfigurator";
+
+import ".././styles/css/testing.css";
 
 function Testing() {
     const [numBoards, setNumBoards] = useState(1);
