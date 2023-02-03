@@ -8,85 +8,132 @@ input {
     display: inline-block;
 }
 
+.cellDisplay {
+    position: absolute;
+    display: inline-block;
+    margin: auto;
+
+    font-weight: 700;
+    color: white;
+    
+    z-index: 201;
+    pointer-events: none;
+}
+
 /* Cell Focused Styles */
 input:focus {
-    outline: lightgray solid 3px;
-    outline-offset: -4px;
     box-shadow: 0px 0px 9px;
     position:relative;
     z-index:200;
 }
-.size-4 input:focus {
-    width: 7.3rem;
-    padding-right: 0.2rem;
+.size-4:focus {
+    outline: lightgray solid 5px;
+    outline-offset: -7px;
+}
+.size-9:focus {
+    outline: lightgray solid 4px;
+    outline-offset: -5px;
+}
+.size-16:focus {
+    outline: lightgray solid 3px;
+    outline-offset: -3px;
 }
 
 /* Cell Dimensions */
+/* Cell Font Size */
+/* Cell Border */
 .size-4 {
-    width: 7.5rem;
-    height: 7.5rem;
-    line-height: 3ch;
-    font-size: 64px;
+    width: 8rem;
+    height: 8rem;
+
+    line-height: 8rem;
+    font-size: 5rem;
+
+    border: 2px black solid;
 }
 .size-9 {
-    width: 3rem;
-    height: 3rem;
-    line-height: 2ch;
-    font-size: 2.2rem;
+    width: 3.58rem;
+    height: 3.58rem;
+
+    line-height: 3.58rem;
+    font-size: 3rem;
+
+    border: 1px black solid;
 }
 .size-16 {
-    width: 2rem;
-    height: 2rem;
-    line-height: 2ch;
+    width: 2.02rem;
+    height: 2.02rem;
+
+    line-height: 2.02rem;
     font-size: 1.3rem;
+    font-stretch: extra-condensed;
+    font-weight: 700;
+    
+    border: 1px black solid;
 }
+
 
 /* Cell Background Color */
 .cell-bg-blue {
     background-color: blue;
 }
+
 .cell-bg-red {
     background-color: red;
 }
+
 .cell-bg-green {
     background-color: green;
 }
+
 .cell-bg-yellow {
     background-color: yellow;
 }
+
 .cell-bg-orange {
     background-color: darkorange;
 }
+
 .cell-bg-magenta {
     background-color: magenta;
 }
+
 .cell-bg-cyan {
     background-color: cyan;
 }
+
 .cell-bg-lime {
     background-color: lime;
 }
+
 .cell-bg-purple {
-    background-color:blueviolet;
+    background-color: blueviolet;
 }
+
 .cell-bg-pink {
     background-color: deeppink;
 }
+
 .cell-bg-crimson {
     background-color: rgb(144, 0, 0);
 }
+
 .cell-bg-dark-purple {
     background-color: darkmagenta;
 }
+
 .cell-bg-dark-cyan {
-    background-color:darkcyan;
+    background-color: darkcyan;
 }
+
 .cell-bg-gray {
     background-color: gray;
 }
+
 .cell-bg-navy {
     background-color: navy;
 }
+
 .cell-bg-fire {
     background-color: firebrick;
 }
@@ -145,17 +192,4 @@ input:focus {
 }
 .cell-text-fire {
     color:firebrick;
-}
-
-.cellDisplay {
-    position: absolute;
-    display: inline-block;
-    margin: auto;
-    padding: 4px;
-
-    font-weight: 700;
-    color: white;
-    
-    z-index: 201;
-    pointer-events: none;
 }

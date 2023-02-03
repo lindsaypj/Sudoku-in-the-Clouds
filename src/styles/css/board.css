@@ -1,34 +1,40 @@
 
 .board {
     display: inline-block;
-    border: 4px black solid;
 }
 
-/* Group Boards */
+/* Group Borders */
 /* Horazontal */
 .board-4 .cell-row:nth-child(2) {
-    border-bottom: 3px black solid;
+    border-bottom: 9px black solid;
 }
 .board-9 .cell-row:nth-child(3), .board-9 .cell-row:nth-child(6) {
-    border-bottom: 3px black solid;
+    border-bottom: 6px black solid;
 }
 .board-16 .cell-row:nth-child(4), .board-16 .cell-row:nth-child(8), .board-16 .cell-row:nth-child(12) {
     border-bottom: 3px black solid;
 }
 /* Vertical */
 .board-4 .cell-row .cellContainer:nth-child(2) {
-    border-right: 4px black solid;
+    border-right: 9px black solid;
 }
 .board-9 .cell-row .cellContainer:nth-child(3), .board-9 .cell-row .cellContainer:nth-child(6) {
-    border-right: 4px black solid;
+    border-right: 6px black solid;
 }
 .board-16 .cell-row .cellContainer:nth-child(4), .board-16 .cell-row .cellContainer:nth-child(8), .board-16 .cell-row .cellContainer:nth-child(12) {
     border-right: 4px black solid;
 }
 
-/* Board width */
-.board-size-4, .board-size-9, .board-size-16 {
-    min-width: 30rem;
+
+/* Board Border */
+.board-4 {
+    border: 9px black solid;
+}
+.board-9 {
+    border: 6px black solid;
+}
+.board-16 {
+    border: 6px black solid;
 }
 
 input {
