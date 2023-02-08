@@ -1,5 +1,6 @@
 
 .testing-container {
+    display: inline-block;
     padding-top: 1.5rem;
 }
 

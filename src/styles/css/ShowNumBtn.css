@@ -1,0 +1,32 @@
+
+.btn-cell {
+    font-size: .7rem;
+    font-weight: 800;
+    line-height: .7rem;
+    width: .7rem;
+    height: .7rem;
+}
+
+.cell-1 {
+    border: black solid 3px !important;
+}
+.cell-2 {
+    border: black solid 3px !important;
+    border-left-width: 0 !important;
+}
+.cell-3 {
+    border: black solid 3px !important;
+    border-top-width: 0 !important;
+}
+.cell-4 {
+    border: black solid 3px !important;
+    border-left-width: 0 !important;
+    border-top-width: 0 !important;
+}
+
+.selected-true {
+    background-color: rgb(208,208,208) !important;
+}
+.selected-false {
+    background-color: white !important;
+}

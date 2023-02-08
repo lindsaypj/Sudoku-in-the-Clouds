@@ -1,7 +1,7 @@
 import React from "react";
 import { useState } from "react";
 import SudokuBoard from "../components/boards/SudokuBoard";
-import TestConficurator from "../components/TestConfigurator";
+import TestConfigurator from "../components/TestConfigurator";
 
 import ".././styles/css/testing.css";
 
@@ -10,7 +10,7 @@ import ".././styles/css/testing.css";
  * configuring patterns across
  * @returns Testing view component
  */
-function Testing() {
+function Testing(props) {
     const [numBoards, setNumBoards] = useState(1);
     const [boardSize, setBoardSize] = useState(4);
     const [hideNums, setHideNums] = useState(false);
@@ -25,12 +25,14 @@ function Testing() {
     return (
         <>
             {/* Configurator for adjusting board parameters */}
-            <TestConficurator 
+            <TestConfigurator 
                 setNumBoards={setNumBoards}
                 numBoards={numBoards}
                 setBoardSize={setBoardSize}
-                hideNums={hideNums}
+                boardSize={boardSize}
                 setHideNums={setHideNums}
+                hideNums={hideNums}
+                setMenuVisibility={props.setMenuVisibility}
             />
 
             {/* Render Configured Boards */}
