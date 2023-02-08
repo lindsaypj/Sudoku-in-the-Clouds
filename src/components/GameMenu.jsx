@@ -11,7 +11,10 @@ function GameMenu(props) {
     }, [props.show]);
 
     const handleShow = () => setShow(true);
-    const handleClose = () => setShow(false);
+    const handleClose = () => {
+        setShow(false);
+        props.setShow(false);
+    }
 
     return (
         <>
