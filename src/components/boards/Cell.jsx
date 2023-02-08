@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useEffect } from 'react';
 
-import '.././styles/css/cell.css'
+import '../.././styles/css/cell.css'
 
 // Static Constants
 const colors = ["black", "blue", "red", "green", "yellow", "purple", "orange", "magenta",

@@ -1,10 +1,15 @@
 import React from "react";
 import { useState } from "react";
-import SudokuBoard from "../components/SudokuBoard";
+import SudokuBoard from "../components/boards/SudokuBoard";
 import TestConficurator from "../components/TestConfigurator";
 
 import ".././styles/css/testing.css";
 
+/**
+ * The Testing view is designed for testing funcitonality across board sizes,
+ * configuring patterns across
+ * @returns Testing view component
+ */
 function Testing() {
     const [numBoards, setNumBoards] = useState(1);
     const [boardSize, setBoardSize] = useState(4);
