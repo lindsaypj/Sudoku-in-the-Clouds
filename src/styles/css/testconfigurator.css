@@ -5,11 +5,19 @@
 }
 
 .configurator-container {
-    display: inline-block;
-    position: sticky;
-    float: left;
+    position: fixed;
     top: 0;
-    width: 250px;
+    width: 200px;
+    height: 100%;
+}
+
+.configurator-header {
+    font-size: 1.4rem;
+    font-weight: 600;
+}
+
+.min-w-200 {
+    min-width: 170px;
 }
 
 .btn:hover {

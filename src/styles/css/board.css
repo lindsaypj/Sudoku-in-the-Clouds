@@ -2,6 +2,7 @@
 .board {
     text-align: center;
     display: inline-block;
+    min-width: 535px;
 }
 
 /* Group Borders */

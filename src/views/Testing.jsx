@@ -23,27 +23,32 @@ function Testing(props) {
     }
   
     return (
-        <>
-            {/* Configurator for adjusting board parameters */}
-            <TestConfigurator 
-                setNumBoards={setNumBoards}
-                numBoards={numBoards}
-                setBoardSize={setBoardSize}
-                boardSize={boardSize}
-                setHideNums={setHideNums}
-                hideNums={hideNums}
-                setMenuVisibility={props.setMenuVisibility}
-            />
-
-            {/* Render Configured Boards */}
-            <div className="testing-container">
-                {boards.map((value, index) => (
-                    <div key={index} className="board-container">
-                        <SudokuBoard size={boardSize} hideNums={hideNums} boardIndex={index} />
+        <div className="container-fluid">
+            <div className="row">
+                <div className="col-xl-2 col-lg-3 col-md-4 col-12">
+                    {/* Configurator for adjusting board parameters */}
+                    <TestConfigurator 
+                        setNumBoards={setNumBoards}
+                        numBoards={numBoards}
+                        setBoardSize={setBoardSize}
+                        boardSize={boardSize}
+                        setHideNums={setHideNums}
+                        hideNums={hideNums}
+                        setMenuVisibility={props.setMenuVisibility}
+                    />
+                </div>
+                <div className="col-12 col-md-8 col-lg-9 col-xl-10 text-center">
+                    {/* Render Configured Boards */}
+                    <div className="testing-container">
+                        {boards.map((value, index) => (
+                            <div key={index} className="board-container">
+                                <SudokuBoard size={boardSize} hideNums={hideNums} boardIndex={index} />
+                            </div>
+                        ))}
                     </div>
-                ))}
+                </div>
             </div>
-        </>
+        </div>
     );
   }
 

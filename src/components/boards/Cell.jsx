@@ -63,7 +63,7 @@ function Cell(props) {
             <p className={"cellDisplay size-"+props.size + " cell-text-"+cellColor}>{displayValue}</p>
             <input 
                 type={'text'}
-                className={"size-"+props.size+" cell-bg-"+cellColor +" cell-text-"+cellColor}
+                className={"cell size-"+props.size+" cell-bg-"+cellColor +" cell-text-"+cellColor}
                 tabIndex={props.index+1}
                 pattern={inputPattern}
                 value={inputValue} 

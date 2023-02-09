@@ -1,7 +1,7 @@
-import React, { useReducer } from "react";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import ShowNumBtn from "./buttons/ShowNumBtn";
 import HideNumBtn from "./buttons/HideNumBtn";
+import Form from 'react-bootstrap/Form';
 
 import '.././styles/css/testconfigurator.css';
 
@@ -10,7 +10,7 @@ import '.././styles/css/testconfigurator.css';
 function TestConfigurator(props) {
         
     return (
-        <div className="configurator-container ms-5">
+        <div className="configurator-container ms-4">
             {/* MENU */}
             <div className="text-start m-1 mt-5">
                 <button 
@@ -18,9 +18,14 @@ function TestConfigurator(props) {
                     onClick={() => props.setMenuVisibility(true)}
                 >Menu</button>
             </div>
+
+            {/* Configuration Header */}
+            <div>
+                <h4 className="configurator-header mt-4 mb-0">Configure Board{props.numBoards > 1 && "s"}:</h4>
+            </div>
             
             {/* BOARD SIZE */}
-            <div className={"bg-light text-start mt-3 size-" + props.boardSize + "-selected"}>
+            <div className={"d-inline-block text-start mt-2 size-" + props.boardSize + "-selected"}>
                 <p className="bg-light m-1 mb-0 text-start">Board Size:</p>
                 <button 
                     className="btn m-1 d-inline btn-theme-light shadow-sm fw-bold" 
@@ -37,7 +42,7 @@ function TestConfigurator(props) {
             </div>
 
             {/* HIDE/SHOW NUMBERS */}
-            <div className="mt-3">
+            <div className="mt-3 d-inline-block">
                 <p className="bg-light m-1 mb-0 text-start">Cell Values:</p>
                 <div className="d-inline me-2">
                     <ShowNumBtn 
@@ -46,21 +51,28 @@ function TestConfigurator(props) {
                         hideNums={props.hideNums}
                     />
                 </div>
-                <HideNumBtn 
-                    theme={"btn-theme-light"} 
-                    setHideNums={props.setHideNums}
-                    hideNums={props.hideNums}
-                />
+                <div className="d-inline">
+                    <HideNumBtn 
+                        theme={"btn-theme-light"} 
+                        setHideNums={props.setHideNums}
+                        hideNums={props.hideNums}
+                    />
+                </div>
+                
             </div>
 
             {/* NUMBER OF BOARDS */}
-            <div className="bg-light m-1 mt-3">
-                <p className="bg-light mb-0">Number Of Boards:</p>
-                <input 
-                className="shadow-sm"
-                type={"number"} 
-                value={props.numBoards} 
-                onChange={(e) => props.setNumBoards(e.target.value)}></input>
+            <div className="bg-light m-1 mt-3 d-inline-block">
+                <p className="bg-light mb-0">Number Of Boards: {props.numBoards}</p>
+                <Form.Range 
+                    type="range" 
+                    class="form-range min-w-200"
+                    defaultValue={1}
+                    min="1" 
+                    max="100" 
+                    step="1"
+                    onChange={(e) => props.setNumBoards(e.target.value)}
+                />
             </div>
         </div>
     );
