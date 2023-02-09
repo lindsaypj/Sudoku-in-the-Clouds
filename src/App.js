@@ -5,6 +5,7 @@ import SudokuCasual from './views/SudokuCasual';
 import SudokuHome from './views/SudokuHome';
 
 import './styles/css/App.css';
+import './styles/css/font-roboto.css';
 
 
 // Define game modes
