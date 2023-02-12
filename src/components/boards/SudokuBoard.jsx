@@ -41,10 +41,11 @@ function SudokuBoard(props) {
             {/* Map over rows */}
             {cellRows.map((row, rowIndex) => {
                 return (
-                <div className="cell-row">
+                <div key={rowIndex} className="cell-row">
                     {row.map((cellValue, cellIndex) => {
                         return (
                         <Cell 
+                            key={cellIndex}
                             value={cellValue} 
                             size={boardSize} 
                             textVisibility={props.hideNums}

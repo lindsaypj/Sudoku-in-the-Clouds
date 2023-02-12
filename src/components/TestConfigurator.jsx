@@ -66,7 +66,7 @@ function TestConfigurator(props) {
                 <p className="bg-light mb-0">Number Of Boards: {props.numBoards}</p>
                 <Form.Range 
                     type="range" 
-                    class="form-range min-w-200"
+                    className="form-range min-w-200"
                     defaultValue={1}
                     min="1" 
                     max="100" 
