@@ -1,0 +1,101 @@
+
+/*** General Page Styling ***/
+.home-body {
+    padding: 0;
+    margin: 0;
+
+    background: rgb(0,113,255);
+
+    font-family: Roboto, sans-serif;
+    color: white;
+}
+
+.home-p {
+    font-size: 1.5rem;
+    font-weight: 300;
+}
+
+.home-p {
+    text-shadow: 0 0 2px;
+}
+
+
+/*** Header styles ***/
+
+/* Background */
+.sky-background {
+    /* SOURCE: https://cssgradient.io/ */
+    background: rgb(0,113,255);
+    background: -moz-linear-gradient(0deg, rgba(0,113,255,1) 0%, rgba(0,242,255,1) 100%);
+    background: -webkit-linear-gradient(0deg, rgba(0,113,255,1) 0%, rgba(0,242,255,1) 100%);
+    background: linear-gradient(0deg, rgba(0,113,255,1) 0%, rgba(0,242,255,1) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#0071ff",endColorstr="#00f2ff",GradientType=1);
+}
+
+/* Title */
+.header h1 {
+    padding: 4rem 2rem;
+    margin: 0;
+    text-align: center;
+    text-shadow: 0 0 4px white;
+
+    font-size: 4rem;
+}
+
+
+/*** Project Info ***/
+
+/* image */
+.project-info img {
+    width: 300px;
+    max-width: 75%;
+
+    margin-bottom: 10px;
+}
+
+/* Description */
+.project-info p {
+    max-width: 80%;
+    margin: 60px auto 30px auto;
+}
+
+/* Play button */
+.project-info button {
+    box-shadow: 0 0 4px white;
+    text-shadow: 0 0 1px black;
+}
+
+/* Cloud Background */
+.home-example {
+    background-image: url('../../images/cloud.svg') ;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    padding: 50px 0 200px 0;
+    margin: -50px 0 -200px 0;
+}
+
+
+/*** Coming Soon ***/
+
+/* Spacing */
+.coming-soon {
+    margin-top: 200px;
+}
+
+/* background */
+.coming-soon {
+    background: rgb(0,0,108);
+    background: -moz-linear-gradient(0deg, rgba(0,0,108,1) 0%, rgba(0,113,255,1) 100%);
+    background: -webkit-linear-gradient(0deg, rgba(0,0,108,1) 0%, rgba(0,113,255,1) 100%);
+    background: linear-gradient(0deg, rgba(0,0,108,1) 0%, rgba(0,113,255,1) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#00006c",endColorstr="#0071ff",GradientType=1);
+}
+
+/* Shadows */
+.coming-soon h2 {
+    text-shadow: 0 0 3px;
+}
+.coming-soon h3 {
+    text-shadow: 0 0 2px;
+}
