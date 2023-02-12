@@ -14,10 +14,16 @@ function SudokuBoard(props) {
         setBoardIndex(props.boardIndex * props.size * props.size);
     }, [props]);
 
-    const cells = [];
-    for (let i = 0; i < boardSize * boardSize; i++) {
-        cells[i] = "";
+    let cells = [];
+    if (props.initialBoard) {
+        cells = props.initialBoard;
     }
+    else {
+        for (let i = 0; i < boardSize * boardSize; i++) {
+            cells[i] = "";
+        }
+    }
+    
 
     const cellRows = new Array(cells.length);
 
@@ -25,7 +31,7 @@ function SudokuBoard(props) {
     for (let cellRow = 0; cellRow < boardSize; cellRow++) {
         const newRow = [];
         for (let col = 0; col < boardSize; col++) {
-            newRow[col] = cells[col];
+            newRow[col] = cells[col + (cellRow * boardSize)];
         }
         cellRows.push(newRow);
     }
