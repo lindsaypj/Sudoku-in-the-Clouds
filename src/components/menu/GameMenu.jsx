@@ -3,17 +3,37 @@ import { useEffect } from 'react';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 
+// Menu pages
+const MenuPages = {
+    Main: "main",
+    GameModes: "game-modes",
+    Settings: "settings",
+    Themes: "themes"
+};
+
 function GameMenu(props) {
     const [show, setShow] = useState(false);
+    const [menuPage, setMenuPage] = useState("main");
 
+    // Handle showing the menu on request
     useEffect(() => {
+        setMenuPage("main");
         setShow(props.show);
     }, [props.show]);
 
-    const handleShow = () => setShow(true);
+    // Close the modal and update App state
     const handleClose = () => {
-        setShow(false);
-        props.setShow(false);
+        setShow(false); // Hide modal
+        setMenuPage("main"); // Return the menu to main
+        props.setShow(false); // update app state
+    }
+
+    // Render the selected menu page
+    function renderMenuPage(page) {
+        switch (page) {
+            case "main":
+                return 
+        }
     }
 
     return (
@@ -47,5 +67,7 @@ function GameMenu(props) {
         </>
     );
 }
+
+const 
 
 export default GameMenu;

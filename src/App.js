@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import GameMenu from './components/GameMenu';
+import GameMenu from './components/menu/GameMenu';
 import Testing from './views/Testing';
 import SudokuCasual from './views/SudokuCasual';
 import SudokuHome from './views/SudokuHome';
@@ -18,7 +18,7 @@ const GameModes = {
 
 function App() {
   // Hooks to manage App State
-  const [gameMode, setGameMode] = useState(GameModes.Testing);    // Game Mode
+  const [gameMode, setGameMode] = useState();    // Game Mode
   const [menuVisibility, setMenuVisibility] = useState(false);    // Game Menu visibility
 
   function renderGameMode(gameMode) {
@@ -32,7 +32,7 @@ function App() {
       case GameModes.Sudoku16x16Casual:
         return <SudokuCasual size={16} setMenuVisibility={setMenuVisibility} />;
       default:
-        return <SudokuHome />;
+        return <SudokuHome setMenuVisibility={setMenuVisibility} />;
     }
   }
 
