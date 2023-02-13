@@ -21,8 +21,6 @@ function SudokuHome(props) {
                     <div className="cloud x3"></div>
                     <div className="cloud x4"></div>
                     <div className="cloud x5"></div>
-                    <div className="cloud x6"></div>
-                    <div className="cloud x7"></div>
                 </div>
                     <h1>Sudoku In the Clouds</h1>
                 </div>
