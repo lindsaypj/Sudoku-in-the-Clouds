@@ -16,6 +16,7 @@ body {
 #clouds{
     overflow: hidden;
     position: absolute;
+	pointer-events: none;
 	padding: 100px 0;
 	background: transparent;
 	background: -webkit-linear-gradient(top, #c9dbe9 0%, #fff 100%);
