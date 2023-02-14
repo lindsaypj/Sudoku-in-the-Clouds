@@ -26,7 +26,7 @@ function SudokuCasual(props) {
                     return response.json();
                 }
                 else {
-                    console.log("ERROR: "+response);
+                    console.log("ERROR: "+response.status+ " " + response.url);
                 }
             })
             .then(function(board) {
@@ -39,12 +39,14 @@ function SudokuCasual(props) {
             .catch( (e) => setLoading(false));
     }
 
+    // Fetch the data on first render
     useEffect(() => {
         setLoading(true);
         fetchBoard();
     }, []);
 
 
+    // Display the loading component if still loading, otherwise render board
     function getRender() {
         if (isLoading === true) {
             return <Loading />
@@ -62,6 +64,7 @@ function SudokuCasual(props) {
         }
     }
 
+    // Return SudokuCasual Component
     return (
         <div>
             {getRender()}
