@@ -1,14 +1,16 @@
 import React from "react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import SudokuBoard from "../components/boards/SudokuBoard";
+import Loading from "../components/Loading.tsx";
 
 function SudokuCasual(props) {
+    const [isLoading, setLoading] = useState(true);
+    const [initialBoard, setInitialBoard] = useState();
 
     // Function to get a random board from SudokuAPI
     // Use GET @ http://localhost:8080/sudoku/boards/random
-    function GETRandomBoard() {
+    function fetchBoard() {
         const uri = "http://localhost:8080/sudoku/board/"+props.size+"x"+props.size;
-        console.log(uri);
         const params = {
             method: "get",
             mode: "cors",
@@ -29,15 +31,40 @@ function SudokuCasual(props) {
             })
             .then(function(board) {
                 // Board should be int array
-                console.log(board);
-            });
+                // Return array with board data to be rendered inside board
+                setLoading(false);
+                setInitialBoard(board);
+            })
+            // Stop loading if error occured
+            .catch( (e) => setLoading(false));
+    }
+
+    useEffect(() => {
+        setLoading(true);
+        fetchBoard();
+    }, []);
+
+
+    function getRender() {
+        if (isLoading === true) {
+            return <Loading />
+        }
+        else {
+            return (
+                <div className="container-fluid">
+                    <div className="row">
+                        <div>
+                            <SudokuBoard size={props.size} initialBoard={initialBoard} boardIndex={10} />
+                        </div>
+                    </div>
+                </div>
+            );
+        }
     }
 
     return (
-        <div className="container-fluid">
-            <div className="row">
-                <SudokuBoard size={props.boardSize} initialData={GETRandomBoard()} />
-            </div>
+        <div>
+            {getRender()}
         </div>
     );
 }
