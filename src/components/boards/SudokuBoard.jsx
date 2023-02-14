@@ -14,11 +14,13 @@ function SudokuBoard(props) {
         setBoardIndex(props.boardIndex * props.size * props.size);
     }, [props]);
 
+    // Get cell data if it exists, or create blank board
     let cells = [];
     if (props.initialBoard) {
         cells = props.initialBoard;
     }
     else {
+        // Initialze board with no data
         for (let i = 0; i < boardSize * boardSize; i++) {
             cells[i] = "";
         }

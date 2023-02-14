@@ -41,6 +41,7 @@ function App() {
       <GameMenu 
         show={menuVisibility} 
         setShow={setMenuVisibility}
+        GameModes={GameModes}
         setGameMode={setGameMode} 
       />
       {renderGameMode(gameMode)}
