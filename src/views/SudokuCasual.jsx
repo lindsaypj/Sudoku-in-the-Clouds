@@ -1,7 +1,7 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import SudokuBoard from "../components/boards/SudokuBoard";
-import Loading from "../components/Loading.tsx";
+import Loading from "../components/Loading.jsx";
 
 function SudokuCasual(props) {
     const [isLoading, setLoading] = useState(true);
