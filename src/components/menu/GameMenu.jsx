@@ -19,7 +19,7 @@ function GameMenu(props) {
 
     // Handle showing the menu on request
     useEffect(() => {
-        setMenuPage("main");
+        setMenuPage(props.page);
         setShow(props.show);
     }, [props.show]);
 

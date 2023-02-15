@@ -20,6 +20,7 @@ function App() {
   // Hooks to manage App State
   const [gameMode, setGameMode] = useState();    // Game Mode
   const [menuVisibility, setMenuVisibility] = useState(false);    // Game Menu visibility
+  const [initialMenuPage, setInitialMenuPage] = useState("main");
 
   function renderGameMode(gameMode) {
     switch(gameMode) {
@@ -32,13 +33,14 @@ function App() {
       case GameModes.Sudoku16x16Casual:
         return <SudokuCasual size={16} setMenuVisibility={setMenuVisibility} />;
       default:
-        return <SudokuHome setMenuVisibility={setMenuVisibility} />;
+        return <SudokuHome setMenuVisibility={setMenuVisibility} setInitialMenuPage={setInitialMenuPage} />;
     }
-  }
+  } 
 
   return (
     <div className="App bg-light">
       <GameMenu 
+        page={initialMenuPage}
         show={menuVisibility} 
         setShow={setMenuVisibility}
         GameModes={GameModes}
