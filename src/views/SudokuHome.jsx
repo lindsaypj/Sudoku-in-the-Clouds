@@ -36,9 +36,10 @@ function SudokuHome(props) {
                         </p>
                         <button 
                             className="btn btn-light btn-lg px-5"
-                            onClick={() => 
-                                {props.setMenuVisibility(true)
-                                console.log("Clicked")}}
+                            onClick={() => {
+                                props.setInitialMenuPage("game-modes");
+                                props.setMenuVisibility(true);
+                            }}
                         >Play</button>
                     </div>
                 </div>
