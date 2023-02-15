@@ -67,11 +67,11 @@ function Cell(props) {
 
     return (
         <div className='cellContainer'>
-            <p className={"cellDisplay size-"+props.size + " cell-text-"+cellTextColor+" cell-bg-"+cellBGColor}>{displayValue}</p>
+            <p className={"cellDisplay size-"+props.size + " cell-text-"+cellTextColor}>{displayValue}</p>
             {/* Cell input element (Interactable) */}
             <input 
                 type={'text'}
-                className={"cell size-"+props.size}
+                className={"cell size-"+props.size+" cell-bg-"+cellBGColor}
                 tabIndex={props.index+1}
                 pattern={inputPattern}
                 value={inputValue} 
