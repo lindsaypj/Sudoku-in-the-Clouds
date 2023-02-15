@@ -1,9 +1,14 @@
+// React Imports
 import React, { useState } from 'react';
+
+// View page Imports
 import GameMenu from './components/menu/GameMenu';
 import Testing from './views/Testing';
 import SudokuCasual from './views/SudokuCasual';
 import SudokuHome from './views/SudokuHome';
+import Account from './components/account/Account';
 
+// Style imports
 import './styles/css/App.css';
 import './styles/css/font-roboto.css';
 
@@ -14,6 +19,7 @@ const GameModes = {
   Sudoku9x9Casual: "casual9x9",
   Sudoku16x16Casual: "casual16x16",
   Testing: "test",
+  Account: "account"
 }
 
 function App() {
@@ -21,6 +27,9 @@ function App() {
   const [gameMode, setGameMode] = useState();    // Game Mode
   const [menuVisibility, setMenuVisibility] = useState(false);    // Game Menu visibility
   const [initialMenuPage, setInitialMenuPage] = useState("main");
+
+  // Hook to manage Logged in state
+  const [token, setToken] = useState();
 
   function renderGameMode(gameMode) {
     switch(gameMode) {
@@ -32,13 +41,16 @@ function App() {
         return <SudokuCasual size={9} setMenuVisibility={setMenuVisibility} />;
       case GameModes.Sudoku16x16Casual:
         return <SudokuCasual size={16} setMenuVisibility={setMenuVisibility} />;
+      case GameModes.Account:
+        return <Account token={token} setToken={setToken} />; 
       default:
         return <SudokuHome setMenuVisibility={setMenuVisibility} setInitialMenuPage={setInitialMenuPage} />;
     }
-  } 
+  }
 
   return (
     <div className="App bg-light">
+      {/* Menu for navigating game modes + settings */}
       <GameMenu 
         page={initialMenuPage}
         show={menuVisibility} 
@@ -47,6 +59,7 @@ function App() {
         setGameMode={setGameMode} 
       />
       {renderGameMode(gameMode)}
+      {/* Router for handling private routes */}
     </div>
   );
 }
