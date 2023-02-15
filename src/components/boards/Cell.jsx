@@ -47,8 +47,15 @@ function Cell(props) {
             setInputValue("");
         }
         
-        // Set the return value
-        setDisplayValue(newValue);
+        // Set the Display value (prevent value from being "")
+        if (newValue === "") {
+            setDisplayValue(0);
+        }
+        else {
+            setDisplayValue(newValue);
+        }
+
+        // Set cell colors
         setCellBGColor();
         setCellTextColor();
     }
