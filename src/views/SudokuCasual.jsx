@@ -55,7 +55,7 @@ function SudokuCasual(props) {
             return (
                 <div className="container-fluid">
                     <div className="row">
-                        <div>
+                        <div className="col-12 text-center">
                             <SudokuBoard size={props.size} initialBoard={initialBoard} boardIndex={10} />
                         </div>
                     </div>
