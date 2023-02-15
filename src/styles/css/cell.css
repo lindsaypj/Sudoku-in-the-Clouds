@@ -1,6 +1,7 @@
 input.cell {
     text-align: center;
     caret-color: transparent;
+    color: transparent;
 }
 
 .cellContainer {
@@ -137,6 +138,9 @@ input.cell:focus {
 .cell-bg-fire {
     background-color: firebrick;
 }
+.cell-bg-transparent {
+    background-color: transparent;
+}
 
 /* Cell Text Color */
 .cell-text-black {
@@ -192,4 +196,7 @@ input.cell:focus {
 }
 .cell-text-fire {
     color:firebrick;
+}
+.cell-text-transparent {
+    color: transparent;
 }

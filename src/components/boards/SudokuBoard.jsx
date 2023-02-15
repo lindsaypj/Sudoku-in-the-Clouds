@@ -22,7 +22,7 @@ function SudokuBoard(props) {
     else {
         // Initialze board with no data
         for (let i = 0; i < boardSize * boardSize; i++) {
-            cells[i] = "";
+            cells[i] = 0;
         }
     }
     
@@ -50,7 +50,7 @@ function SudokuBoard(props) {
                             key={cellIndex}
                             value={cellValue} 
                             size={boardSize} 
-                            textVisibility={props.hideNums}
+                            textVisibility={!(props.hideNums)}
                             index={tabIndexOffset + (rowIndex*boardSize) + cellIndex} 
                         />
                         );
