@@ -11,18 +11,21 @@ const INPUT_PATTERNS = {4:"[0-4]", 9:"[0-9]", 16:"[0-9]|1[0-6]"};
 // Component Function
 function Cell(props) {
     // Hooks to manage cell value
-    const [inputValue, setInputValue] = useState(props.value);
-    const [displayValue, setDisplayValue] = useState("");
+    const [inputValue, setInputValue] = useState("");
+    const [displayValue, setDisplayValue] = useState(props.value);
 
     // Hook to manage input pattern (prevents unwated input values)
     const [inputPattern, setInputPattern] = useState(INPUT_PATTERNS[props.size]);
+    
     // Hooks to manage cell color
+    // Background Color
     const [cellBGColor, setCellBGColor] = useReducer(() => {
         if (props.textVisibility) {
             return "transparent";
         }
         return COLORS[displayValue];
     }, props.value);
+    // Text Color
     const [cellTextColor, setCellTextColor] = useReducer(() => {
         if (displayValue === 0 || displayValue === "0") {
             return "transparent";
@@ -32,14 +35,7 @@ function Cell(props) {
         }
         return COLORS[displayValue];
     }, props.value);
-
-    // Load data and initialize cell state
-    useEffect(() => {
-        setInputValue(""); // Clear input value for new inputs
-        setDisplayValue(props.value);
-        setCellTextColor();
-        setCellBGColor();
-    }, []);
+    
 
     // Render display value on input update
     function handleNewInputValue(newValue) {
