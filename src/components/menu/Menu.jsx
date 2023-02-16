@@ -21,10 +21,7 @@ function Menu({page, setMenuPage, MenuPages, GameModes, setGameMode, closeMenu})
                             <Button onClick={() => {setMenuPage("game-modes")}} >Game Modes</Button>
                         </div>
                         <div className='d-block text-center p-1'>
-                            <Button onClick={() => {setMenuPage("settings")}} >Settings</Button>
-                        </div>
-                        <div className='d-block text-center p-1'>
-                            <Button >Theme</Button>
+                            <Button onClick={() => {handleChangeGameMode("account")}} >Settings</Button>
                         </div>
                     </div>
                 );
@@ -51,12 +48,6 @@ function Menu({page, setMenuPage, MenuPages, GameModes, setGameMode, closeMenu})
                         <div className='d-block text-center p-1'>
                             <Button onClick={() => {handleChangeGameMode(GameModes.Sudoku16x16Casual)}} >16 x 16</Button>
                         </div>
-                    </div>
-                );
-            case "settings":
-                return (
-                    <div>
-
                     </div>
                 );
             default: 

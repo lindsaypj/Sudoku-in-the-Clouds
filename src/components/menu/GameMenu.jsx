@@ -8,9 +8,7 @@ import Menu from './Menu.jsx';
 const MenuPages = {
     Main: "main",
     GameModes: "game-modes",
-    GameModeCasual: "game-mode-casual",
-    Settings: "settings",
-    Themes: "themes"
+    GameModeCasual: "game-mode-casual"
 };
 
 function GameMenu(props) {
