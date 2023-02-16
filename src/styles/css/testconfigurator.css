@@ -1,5 +1,5 @@
 
-.configurator-container * {
+.configurator-container > {
     display: block;
     border: none;
 }
