@@ -13,7 +13,7 @@ export default function NewUserForm() {
     // Validation Messages
     const [usernameError, setUsernameError] = useReducer(() => {
         if (username.length < 3) {
-            return "Username must be at least 3 characters";
+            return "Username must be at least 4 characters";
         }
     }, "");
     const [passwordError, setPasswordError] = useReducer(() => {
