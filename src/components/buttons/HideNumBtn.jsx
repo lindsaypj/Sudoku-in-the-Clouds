@@ -12,6 +12,7 @@ function HideNumBtn(props) {
 
     return (
         <button 
+            type="button"
             className={"btn shadow-sm p-2 text-center selected-"+selected} 
             onClick={() => props.setHideNums(true)}
         >
