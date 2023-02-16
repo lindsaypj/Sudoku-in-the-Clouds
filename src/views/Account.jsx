@@ -1,5 +1,5 @@
 import React from "react";
-import Login from "./Login.jsx";
+import Login from "../components/Login.jsx";
 
 export default function Account({ token, setToken }) {
 

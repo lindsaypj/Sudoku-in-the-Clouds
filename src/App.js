@@ -6,7 +6,7 @@ import GameMenu from './components/menu/GameMenu';
 import Testing from './views/Testing';
 import SudokuCasual from './views/SudokuCasual';
 import SudokuHome from './views/SudokuHome';
-import Account from './components/account/Account';
+import Account from './views/Account';
 
 // Style imports
 import './styles/css/App.css';
@@ -53,13 +53,16 @@ function App() {
       {/* Menu for navigating game modes + settings */}
       <GameMenu 
         page={initialMenuPage}
+        setInitialMenuPage={setInitialMenuPage}
         show={menuVisibility} 
         setShow={setMenuVisibility}
         GameModes={GameModes}
+        gameMode={gameMode}
         setGameMode={setGameMode} 
       />
+
+      {/* Render the appropriate Gamemode/View page */}
       {renderGameMode(gameMode)}
-      {/* Router for handling private routes */}
     </div>
   );
 }

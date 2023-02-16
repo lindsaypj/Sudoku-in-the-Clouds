@@ -29,8 +29,28 @@ function GameMenu(props) {
         props.setShow(false); // update app state
     }
 
+    // Function to render the navbar when not on home page
+    function getNavbar() {
+        if (props.gameMode) {
+            return (
+                <div className='d-block p-2 px-4 sticky-top bg-white z-top shadow-sm'>
+                    <button 
+                        className="btn bg-secondary mx-3 text-white shadow-sm"
+                        onClick={() => {
+                            props.setShow(true);
+                            props.setInitialMenuPage(MenuPages.Main);
+                        }}
+                    >Menu</button>
+                </div>
+            );
+        }
+    }
+
     return (
         <>
+        {/* Only render navbar when not on homepage */}
+        {getNavbar()}
+
         {/* Game Menu Modal */}
         <Modal 
             show={show} 

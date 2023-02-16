@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import ShowNumBtn from "./buttons/ShowNumBtn";
 import HideNumBtn from "./buttons/HideNumBtn";
 import Form from 'react-bootstrap/Form';
@@ -11,17 +11,9 @@ function TestConfigurator(props) {
         
     return (
         <div className="configurator-container ms-4">
-            {/* MENU */}
-            <div className="text-start m-1 mt-5">
-                <button 
-                    className="btn bg-secondary text-white shadow-sm"
-                    onClick={() => props.setMenuVisibility(true)}
-                >Menu</button>
-            </div>
-
             {/* Configuration Header */}
             <div>
-                <h4 className="configurator-header mt-4 mb-0">Configure Board{props.numBoards > 1 && "s"}:</h4>
+                <h4 className="configurator-header mt-3 mb-0">Configure Board{props.numBoards > 1 && "s"}:</h4>
             </div>
             
             {/* BOARD SIZE */}
