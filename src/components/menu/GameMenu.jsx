@@ -27,6 +27,10 @@ function GameMenu(props) {
         props.setShow(false); // update app state
     }
 
+    const handleBack = () => {
+        setMenuPage(MenuPages.Main);
+    }
+
     // Function to render the navbar when not on home page
     function getNavbar() {
         if (props.gameMode) {
@@ -44,6 +48,31 @@ function GameMenu(props) {
         }
     }
 
+    // Function to render the footer (add back button if not on main)
+    function getFooter() {
+        if (menuPage !== MenuPages.Main) {
+           return (
+                <>
+                <Button variant="secondary" onClick={handleBack}>
+                    Back
+                </Button>
+                <Button variant="secondary" onClick={handleClose}>
+                    Close
+                </Button>
+                </>
+            ); 
+        }
+        else {
+            return (
+                <Button variant="secondary" onClick={handleClose}>
+                    Close
+                </Button>
+            );
+        }
+        
+        
+    }
+
     return (
         <>
         {/* Only render navbar when not on homepage */}
@@ -56,7 +85,7 @@ function GameMenu(props) {
             centered
         >
             <Modal.Header>
-            <Modal.Title className='mx-auto'>SUDOKU MENU</Modal.Title>
+                <Modal.Title className='mx-auto'>SUDOKU MENU</Modal.Title>
             </Modal.Header>
             <Modal.Body>
                 <Menu
@@ -69,9 +98,7 @@ function GameMenu(props) {
                 />
             </Modal.Body>
             <Modal.Footer className='justify-content-center'>
-            <Button variant="secondary" onClick={handleClose}>
-                Close
-            </Button>
+                {getFooter()}
             </Modal.Footer>
         </Modal>
         </>
