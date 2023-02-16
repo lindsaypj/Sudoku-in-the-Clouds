@@ -25,7 +25,7 @@ function SudokuHome(props) {
                     <h1>Sudoku In the Clouds</h1>
                 </div>
 
-                {/* Project Info  */}
+                {/* Project Info */}
                 <div className="project-info row my-5 px-5">
                     <div className="col-12 order-md-1 text-center">
                         <p className="home-p">
@@ -34,6 +34,7 @@ function SudokuHome(props) {
                             complete the board. Sudoku In the Clouds is a place for you to relax, improve, or
                             compete with your sudoku skills.
                         </p>
+                        {/* Play Button */}
                         <button 
                             className="btn btn-light btn-lg px-5"
                             onClick={() => {
@@ -41,6 +42,14 @@ function SudokuHome(props) {
                                 props.setMenuVisibility(true);
                             }}
                         >Play</button>
+                        {/* Create Account button */}
+                        <button 
+                            className="btn btn-light btn-lg px-5 mx-2"
+                            onClick={() => {
+                                props.setNewUser(true);
+                                props.setGameMode(props.GameModes.Account);
+                            }}    
+                        >Create Account</button>
                     </div>
                 </div>
             </div>

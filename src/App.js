@@ -30,6 +30,7 @@ function App() {
 
   // Hook to manage Logged in state
   const [token, setToken] = useState();
+  const [newUser, setNewUser] = useState(false);
 
   function renderGameMode(gameMode) {
     switch(gameMode) {
@@ -42,9 +43,15 @@ function App() {
       case GameModes.Sudoku16x16Casual:
         return <SudokuCasual size={16} setMenuVisibility={setMenuVisibility} />;
       case GameModes.Account:
-        return <Account token={token} setToken={setToken} />; 
+        return <Account token={token} setToken={setToken} newUser={newUser} setNewUser={setNewUser} />; 
       default:
-        return <SudokuHome setMenuVisibility={setMenuVisibility} setInitialMenuPage={setInitialMenuPage} />;
+        return <SudokuHome 
+                setMenuVisibility={setMenuVisibility}
+                setInitialMenuPage={setInitialMenuPage}
+                GameModes={GameModes}
+                setGameMode={setGameMode}
+                setNewUser={setNewUser}
+              />;
     }
   }
 
