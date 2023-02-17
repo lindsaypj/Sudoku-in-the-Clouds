@@ -3,6 +3,8 @@ import React, { useState, useReducer } from "react";
 import ShowNumBtn from "./buttons/ShowNumBtn";
 import HideNumBtn from "./buttons/HideNumBtn";
 
+import '../styles/css/NewUserForm.css';
+
 export default function NewUserForm() {
     // Form fields
     const [username, setUsername] = useState("");
@@ -13,7 +15,7 @@ export default function NewUserForm() {
     // Validation Messages
     const [usernameError, setUsernameError] = useReducer(() => {
         if (username.length < 3 || username.length > 20) {
-            return "Username must be 4-20 characters";
+            return "Username must be 4-20 characters long";
         }
         else {
             return "";
@@ -33,7 +35,7 @@ export default function NewUserForm() {
     function handleNewUser(event) {
         // Don't reload
         event.preventDefault();
-
+        
 
     }
 
@@ -49,27 +51,27 @@ export default function NewUserForm() {
 
                         <fieldset className="container-fluid p-0">
                             <legend>Login Information</legend>
+                            <hr></hr>
                         
                             <div className="row">
                                 {/* USERNAME */}
                                 <div className="col-6">
-                                    <label className="form-label pe-2">Username
+                                    <label className="form-label">Username
                                     <input
                                         className="form-control border-0 shadow-sm"
                                         type={"text"}
                                         value={username}
                                         onChange={(e) => setUsername(e.target.value)}
-                                        onBlur={() => setUsernameError()}
                                     />
                                     </label>
                                 </div>
 
                                 {/* PASSWORD */}
                                 <div className="col-6">
-                                    <label className="form-label ps-2">Password
+                                    <label className="form-label">Password
                                     <input
                                         className="form-control border-0 shadow-sm"
-                                        type={"text"}
+                                        type={"password"}
                                         value={password}
                                         onChange={(e) => setPassword(e.target.value)}
                                         onBlur={() => setPasswordError()}
@@ -87,15 +89,11 @@ export default function NewUserForm() {
                                 </div>
                             </div>
                             
-
-                            
-
-
-                            <hr className="mb-5"></hr>
                         </fieldset>
 
-                        <fieldset className="container-fluid p-0">
+                        <fieldset className="container-fluid mt-4 p-0">
                             <legend>Game Options</legend>
+                            <hr></hr>
 
                             {/* Show Conflicts */}
                             <div>
@@ -113,11 +111,11 @@ export default function NewUserForm() {
                                 </div>
                             </div>
                             
-                            <hr className="mb-5"></hr>
                         </fieldset>
 
-                        <fieldset className="mb-5 container-fluid p-0">
+                        <fieldset className="my-5 container-fluid p-0">
                             <legend>Preferences</legend>
+                            <hr></hr>
 
                             {/* HIDE/SHOW NUMBERS */}
                             <div className="mt-3 d-inline-block">
