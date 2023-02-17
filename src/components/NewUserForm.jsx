@@ -12,13 +12,19 @@ export default function NewUserForm() {
 
     // Validation Messages
     const [usernameError, setUsernameError] = useReducer(() => {
-        if (username.length < 3) {
-            return "Username must be at least 4 characters";
+        if (username.length < 3 || username.length > 20) {
+            return "Username must be 4-20 characters";
+        }
+        else {
+            return "";
         }
     }, "");
     const [passwordError, setPasswordError] = useReducer(() => {
         if (password.length < 6) {
             return "Password must be at least 7 characters";
+        }
+        else {
+            return "";
         }
     }, "");
 
