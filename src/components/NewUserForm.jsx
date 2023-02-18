@@ -3,7 +3,7 @@ import React, { useState, useReducer } from "react";
 import ShowNumBtn from "./buttons/ShowNumBtn";
 import HideNumBtn from "./buttons/HideNumBtn";
 
-export default function NewUserForm() {
+export default function NewUserForm({ setToken, setUser, setNewUser }) {
     // Form fields
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
@@ -13,6 +13,7 @@ export default function NewUserForm() {
     // Validation Messages
     const [usernameError, setUsernameError] = useState("");
     const [passwordError, setPasswordError] = useState("");
+    const [globalError, setGlobalError] = useState("");
 
 
     // Function to handle the form submition
@@ -21,31 +22,49 @@ export default function NewUserForm() {
         event.preventDefault();
         
         // Validate fields
-        let validity = true;
-        if (password.replace(/\s+/g, '').length < 7) {
-            validity = false;
-            setPasswordError("Password must be at least 7 characters");
-        }
-        else {
-            setPasswordError("");
-        }
-        if (username.replace(/\s+/g, '').length < 4 || username.replace(/\s+/g, '').length > 20) {
-            validity = false;
-            setUsernameError("Username must be 4-20 characters long");
-        }
-        else {
-            setUsernameError("");
-        }
-        if (showConflicts !== true && showConflicts !== false) {
-            validity = false;
-            console.log("ERROR: Incorrect datatype");
-        }
-        if (hideNums !== true && hideNums !== false) {
-            validity = false;
-            console.log("ERROR: Incorrect datatype");
-        }
+        let validity = validateInputs();
 
-        
+        // Create User object
+        const newUser = createUserObject();
+
+        // Create Fetch POST request for New User
+        if (validity) {
+            const createUserURI = "http://localhost:8080/sudoku/users/"+username;
+            const params = {
+                method: "post",
+                mode: "cors",
+                body: JSON.stringify(newUser),
+                headers: {
+                    "Content-Type": "application/json"
+                }
+            }
+
+            // Make fetch call
+            fetch(createUserURI, params)
+            .then(function(response) {
+                if (response.ok) {
+                    setGlobalError("");
+                    return response.json();
+                }
+                else {
+                    if (response.status === 400) {
+                        setGlobalError("ERROR: Invalid User");
+                    }
+                    console.log("ERROR: "+response.status+ " " + response.url);
+                }
+            })
+            .then(function(user) {
+                if (user !== null) {
+                    setUser(user);
+                    setToken(user.token);
+                    setNewUser(false);
+                    // Store User in Session
+                    
+                }
+            })
+            // Stop loading if error occured
+            .catch( setGlobalError("ERROR: internal error, try again"));
+        }
 
     }
 
@@ -149,6 +168,7 @@ export default function NewUserForm() {
 
                         {/* Submit button */}
                         <div className="text-center mb-5">
+                            <span className="d-block text-danger">{globalError}</span>
                             <button type="submit" className="btn btn-primary">Create</button>
                         </div> 
                     </form>
@@ -156,4 +176,82 @@ export default function NewUserForm() {
             </div>
         </div>
     );
+
+    function validateInputs() {
+        let validity = true;
+        if (password.replace(/\s+/g, '').length < 7) {
+            validity = false;
+            setPasswordError("Password must be at least 7 characters");
+        }
+        else {
+            setPasswordError("");
+        }
+        if (username.replace(/\s+/g, '').length < 4 || username.replace(/\s+/g, '').length > 20) {
+            validity = false;
+            setUsernameError("Username must be 4-20 characters long");
+        }
+        else {
+            setUsernameError("");
+        }
+        if (showConflicts !== true && showConflicts !== false) {
+            validity = false;
+            console.log("ERROR: Incorrect datatype");
+        }
+        if (hideNums !== true && hideNums !== false) {
+            validity = false;
+            console.log("ERROR: Incorrect datatype");
+        }
+        return validity;
+    }
+
+    function createUserObject() {
+        return {
+            username: username,
+            token: password,
+            gamesWon: {
+                "wins4x4": 0,
+                "wins9x9": 0,
+                "wins16x16": 0
+            },
+            totalGamesWon: 0,
+            userRank: "STRATUS",
+            preferences: {
+                "pageBackgroundColor": {
+                    "red": 192,
+                    "green": 192,
+                    "blue": 192,
+                    "transparency": 1
+                },
+                "boardCellColor": {
+                    "red": 255,
+                    "green": 255,
+                    "blue": 255,
+                    "transparency": 1
+                },
+                "infoTextColor": {
+                    "red": 0,
+                    "green": 0,
+                    "blue": 0,
+                    "transparency": 1
+                },
+                "boardTextColor": {
+                    "red": 0,
+                    "green": 0,
+                    "blue": 0,
+                    "transparency": 1
+                },
+                "boardBorderColor": {
+                    "red": 0,
+                    "green": 0,
+                    "blue": 0,
+                    "transparency": 1
+                },
+                "infoFont": "Roboto, sans-serif",
+                "boardFont": "Roboto, sans-serif"
+            },
+            settings: {
+                "showConflicts": showConflicts
+            }
+        }
+    }
 }
