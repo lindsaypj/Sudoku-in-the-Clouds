@@ -13,28 +13,40 @@ export default function NewUserForm() {
     const [hideNums, setHideNums] = useState(false);
 
     // Validation Messages
-    const [usernameError, setUsernameError] = useReducer(() => {
-        if (username.length < 3 || username.length > 20) {
-            return "Username must be 4-20 characters long";
-        }
-        else {
-            return "";
-        }
-    }, "");
-    const [passwordError, setPasswordError] = useReducer(() => {
-        if (password.length < 6) {
-            return "Password must be at least 7 characters";
-        }
-        else {
-            return "";
-        }
-    }, "");
+    const [usernameError, setUsernameError] = useState("");
+    const [passwordError, setPasswordError] = useState("");
 
 
     // Function to handle the form submition
     function handleNewUser(event) {
         // Don't reload
         event.preventDefault();
+        
+        // Validate fields
+        let validity = true;
+        if (password.replace(/\s+/g, '').length < 7) {
+            validity = false;
+            setPasswordError("Password must be at least 7 characters");
+        }
+        else {
+            setPasswordError("");
+        }
+        if (username.replace(/\s+/g, '').length < 4 || username.replace(/\s+/g, '').length > 20) {
+            validity = false;
+            setUsernameError("Username must be 4-20 characters long");
+        }
+        else {
+            setUsernameError("");
+        }
+        if (showConflicts !== true && showConflicts !== false) {
+            validity = false;
+            console.log("ERROR: Incorrect datatype");
+        }
+        if (hideNums !== true && hideNums !== false) {
+            validity = false;
+            console.log("ERROR: Incorrect datatype");
+        }
+
         
 
     }
@@ -61,7 +73,7 @@ export default function NewUserForm() {
                                         className="form-control border-0 shadow-sm"
                                         type={"text"}
                                         value={username}
-                                        onChange={(e) => setUsername(e.target.value)}
+                                        onChange={(e) => setUsername(e.target.value.trim())}
                                     />
                                     </label>
                                 </div>
@@ -73,7 +85,7 @@ export default function NewUserForm() {
                                         className="form-control border-0 shadow-sm"
                                         type={"password"}
                                         value={password}
-                                        onChange={(e) => setPassword(e.target.value)}
+                                        onChange={(e) => setPassword(e.target.value.trim())}
                                         onBlur={() => setPasswordError()}
                                     />
                                     </label>
