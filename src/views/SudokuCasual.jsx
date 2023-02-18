@@ -10,7 +10,7 @@ function SudokuCasual(props) {
     // Function to get a random board from SudokuAPI
     // Use GET @ http://localhost:8080/sudoku/boards/random
     function fetchBoard() {
-        const uri = "http://localhost:8080/sudoku/board/"+props.size+"x"+props.size;
+        const uri = "http://localhost:8080/sudoku/boards/"+props.size+"x"+props.size;
         const params = {
             method: "get",
             mode: "cors",
