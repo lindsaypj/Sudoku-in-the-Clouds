@@ -3,8 +3,6 @@ import React, { useState, useReducer } from "react";
 import ShowNumBtn from "./buttons/ShowNumBtn";
 import HideNumBtn from "./buttons/HideNumBtn";
 
-import '../styles/css/NewUserForm.css';
-
 export default function NewUserForm() {
     // Form fields
     const [username, setUsername] = useState("");
