@@ -35,7 +35,8 @@ function App() {
   // Function to retrieve the user from session if stored
   useEffect(() => {
     const foundUser = sessionStorage.getItem('user');
-    if (foundUser !== null && foundUser.token !== null) {
+    if (foundUser !== null && foundUser.token !== null &&
+        foundUser !== undefined && foundUser.token !== undefined) {
       setUser(JSON.parse(foundUser));
     }
   }, []);

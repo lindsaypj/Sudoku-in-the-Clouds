@@ -50,11 +50,10 @@ export default function NewUserForm({ setUser, setNewUser }) {
                     if (response.status === 400) {
                         setUsernameError("Username unavailable");
                     }
-                    console.log("ERROR: "+response.status+ " " + response.url);
                 }
             })
             .then(function(user) {
-                if (user !== null) {
+                if (user !== null && user !== undefined) {
                     setUser(user);
                     setNewUser(false);
                     
@@ -62,8 +61,12 @@ export default function NewUserForm({ setUser, setNewUser }) {
                     sessionStorage.setItem('user', JSON.stringify(user));
                 }
             })
-            // Stop loading if error occured
-            .catch( setGlobalError("ERROR: internal error, try again"));
+            // Render error if no other error detected
+            .catch(() => {
+                if (usernameError === "") {
+                    setGlobalError("ERROR: internal error, try again"); 
+                }
+            });
         }
 
     }
