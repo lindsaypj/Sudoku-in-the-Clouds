@@ -63,6 +63,7 @@ function App() {
                 setInitialMenuPage={setInitialMenuPage}
                 GameModes={GameModes}
                 user={user}
+                setUser={setUser}
                 setGameMode={setGameMode}
                 setNewUser={setNewUser}
               />;
