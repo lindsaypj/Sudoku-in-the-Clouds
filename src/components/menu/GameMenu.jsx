@@ -31,6 +31,32 @@ function GameMenu(props) {
         setMenuPage(MenuPages.Main);
     }
 
+    function getLoginLogout() {
+        if (props.user !== null && props.user !== undefined) {
+            return (
+                <button 
+                    className="btn bg-secondary mx-3 text-white shadow-sm float-end"
+                    onClick={() => {
+                        sessionStorage.clear();
+                        props.setUser(null);
+                        props.setGameMode("");
+                    }}
+                >Logout</button>
+            );
+        }
+        else {
+            return (
+                <button 
+                    className="btn bg-secondary mx-3 text-white shadow-sm float-end"
+                    onClick={() => {
+                        props.setNewUser(false);
+                        props.setGameMode("account");
+                    }}
+                >Login</button>
+            );
+        }
+    }
+
     // Function to render the navbar when not on home page
     function getNavbar() {
         if (props.gameMode) {
@@ -43,6 +69,7 @@ function GameMenu(props) {
                             props.setInitialMenuPage(MenuPages.Main);
                         }}
                     >Menu</button>
+                    {getLoginLogout()}
                 </div>
             );
         }

@@ -79,6 +79,9 @@ function App() {
         GameModes={GameModes}
         gameMode={gameMode}
         setGameMode={setGameMode} 
+        user={user}
+        setUser={setUser}
+        setNewUser={setNewUser}
       />
 
       {/* Render the appropriate Gamemode/View page */}
