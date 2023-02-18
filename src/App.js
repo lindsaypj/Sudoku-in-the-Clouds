@@ -62,6 +62,7 @@ function App() {
                 setMenuVisibility={setMenuVisibility}
                 setInitialMenuPage={setInitialMenuPage}
                 GameModes={GameModes}
+                user={user}
                 setGameMode={setGameMode}
                 setNewUser={setNewUser}
               />;
