@@ -3,7 +3,7 @@ import React, { useState, useReducer } from "react";
 import ShowNumBtn from "./buttons/ShowNumBtn";
 import HideNumBtn from "./buttons/HideNumBtn";
 
-export default function NewUserForm({ setToken, setUser, setNewUser }) {
+export default function NewUserForm({ setUser, setNewUser }) {
     // Form fields
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
@@ -48,7 +48,7 @@ export default function NewUserForm({ setToken, setUser, setNewUser }) {
                 }
                 else {
                     if (response.status === 400) {
-                        setGlobalError("ERROR: Invalid User");
+                        setUsernameError("Username unavailable");
                     }
                     console.log("ERROR: "+response.status+ " " + response.url);
                 }
@@ -56,10 +56,10 @@ export default function NewUserForm({ setToken, setUser, setNewUser }) {
             .then(function(user) {
                 if (user !== null) {
                     setUser(user);
-                    setToken(user.token);
                     setNewUser(false);
-                    // Store User in Session
                     
+                    // Store User in Session
+                    sessionStorage.setItem('user', JSON.stringify(user));
                 }
             })
             // Stop loading if error occured

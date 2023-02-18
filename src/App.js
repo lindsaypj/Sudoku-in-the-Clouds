@@ -1,5 +1,5 @@
 // React Imports
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 // View page Imports
 import GameMenu from './components/menu/GameMenu';
@@ -29,10 +29,18 @@ function App() {
   const [initialMenuPage, setInitialMenuPage] = useState("main");
 
   // Hook to manage Logged in state
-  const [token, setToken] = useState();
   const [user, setUser] = useState();
   const [newUser, setNewUser] = useState(false);
 
+  // Function to retrieve the user from session if stored
+  useEffect(() => {
+    const foundUser = sessionStorage.getItem('user');
+    if (foundUser !== null && foundUser.token !== null) {
+      setUser(JSON.parse(foundUser));
+    }
+  }, []);
+
+  // Dynamically load content by gamemode
   function renderGameMode(gameMode) {
     switch(gameMode) {
       case GameModes.Testing:
@@ -45,8 +53,6 @@ function App() {
         return <SudokuCasual size={16} setMenuVisibility={setMenuVisibility} />;
       case GameModes.Account:
         return <Account
-                token={token}
-                setToken={setToken}
                 user={user}
                 setUser={setUser}
                 newUser={newUser}
