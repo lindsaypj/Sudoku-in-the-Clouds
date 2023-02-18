@@ -29,14 +29,16 @@ export default function Login(props) {
             else {
                 if (response.status === 400) {
                     setErrorMessage("Username or password is invalid");
+                    setPassword("");
                 }
-                console.log("ERROR: "+response.status+ " " + response.url);
             }
         })
         .then(function (user) {
-            props.setUser(user);
-            props.setNewUser(false);
-            sessionStorage.setItem('user', JSON.stringify(user));
+            if (user !== null && user !== undefined) {
+                props.setUser(user);
+                props.setNewUser(false);
+                sessionStorage.setItem('user', JSON.stringify(user));
+            }
         });
     }
 
@@ -72,6 +74,7 @@ export default function Login(props) {
                         </div>
                         
                         <div>
+                            <span className="d-block text-danger">{errorMessage}</span>
                             <button type="submit" className="btn mt-3 btn-primary">Login</button>
                         </div>
                     </form>
