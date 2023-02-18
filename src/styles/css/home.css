@@ -54,13 +54,13 @@
 }
 
 /* Description */
-.project-info p {
+.project-info p, .home-account p {
     max-width: 80%;
     margin: 60px auto 30px auto;
 }
 
 /* Play button */
-.project-info button {
+.home-body button {
     box-shadow: 0 0 4px white;
     text-shadow: 0 0 1px black;
 }

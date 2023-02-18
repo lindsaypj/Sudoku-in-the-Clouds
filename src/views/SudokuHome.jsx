@@ -6,12 +6,55 @@ import "../styles/animation/clouds-animation.css";
 
 const exampleBoard = [8,0,0,0,0,0,0,0,0,0,0,3,6,0,0,0,0,0,0,7,0,0,9,0,2,0,0,0,5,0,0,0,
                       7,0,0,0,0,0,0,0,4,5,7,0,0,0,0,0,1,0,0,0,3,0,0,0,1,0,0,0,0,6,8,0,
-                      0,8,5,0,0,0,1,0,0,9,0,0,0,0,4,0,0]
+                      0,8,5,0,0,0,1,0,0,9,0,0,0,0,4,0,0];
 
 function SudokuHome(props) {
 
+    // Function to get either login or logout button
+    function getLoginLogout() {
+        if (props.user !== null && props.user !== undefined) {
+            return (
+                <button 
+                    type={"button"}
+                    className="btn btn-light mt-3 me-5 float-end"
+                    onClick={() => {
+                        sessionStorage.clear();
+                        props.setUser(null);
+                        props.setGameMode("");
+                    }}
+                >Logout</button>
+            );
+        }
+        else {
+            return (
+                <button 
+                    type={"button"}
+                    className="btn btn-light mt-3 me-5 float-end"
+                    onClick={() => {
+                        props.setNewUser(false);
+                        props.setGameMode("account");
+                    }}
+                >Login</button>
+            );
+        }
+    }
+
     return (
         <div className="container-fluid home-body">
+            <div className="d-block position-fixed w-100">
+                {/* Menu button */}
+                <button 
+                    type={"button"}
+                    className="btn btn-light m-3"
+                    onClick={() => {
+                        props.setMenuVisibility(true);
+                        props.setInitialMenuPage("main");
+                    }}
+                >Menu</button>
+
+                {/* Login button */}
+                {getLoginLogout()}
+            </div>
             <div className="sky-background row">
                 {/* Header */}
                 <div className="header row">
@@ -42,14 +85,6 @@ function SudokuHome(props) {
                                 props.setMenuVisibility(true);
                             }}
                         >Play</button>
-                        {/* Create Account button */}
-                        <button 
-                            className="btn btn-light btn-lg px-5 mx-2"
-                            onClick={() => {
-                                props.setNewUser(true);
-                                props.setGameMode(props.GameModes.Account);
-                            }}    
-                        >Create Account</button>
                     </div>
                 </div>
             </div>
@@ -63,8 +98,29 @@ function SudokuHome(props) {
                 </div>
             </div>
 
+            {/* Account creation */}
+            <div className="home-account row mt-5 pt-5">
+                <div className="col-12 text-center px-1 px-md-5">
+                    <p className="home-p">
+                        With a free account, you can track your solving progress, personalize your game with
+                        customizable themes, and conveniently remember your game preferences. Sign up today 
+                        to take your Sudoku skills to the next level!
+                    </p>
+
+                    {/* Create Account button */}
+                    <button
+                        type={"button"}
+                        className="btn btn-light btn-lg px-5 mx-2"
+                        onClick={() => {
+                            props.setNewUser(true);
+                            props.setGameMode(props.GameModes.Account);
+                        }}    
+                    >Create Account</button>
+                </div>
+            </div>
+
             {/* Coming Soon  */}
-            <div className="coming-soon row px-5">
+            <div className="coming-soon row px-5 mt-5">
                 <div className="col-12 text-center pt-5">
                     <h2>Coming Soon...</h2>
                 </div>
