@@ -20,6 +20,7 @@ function SudokuHome(props) {
                     onClick={() => {
                         sessionStorage.clear();
                         props.setUser(null);
+                        sessionStorage.setItem('gameMode', "");
                         props.setGameMode("");
                     }}
                 >Logout</button>
@@ -32,7 +33,8 @@ function SudokuHome(props) {
                     className="btn btn-light mt-3 me-5 float-end"
                     onClick={() => {
                         props.setNewUser(false);
-                        props.setGameMode("account");
+                        sessionStorage.setItem('gameMode', props.GameModes.Account);
+                        props.setGameMode(props.GameModes.Account);
                     }}
                 >Login</button>
             );
@@ -113,6 +115,7 @@ function SudokuHome(props) {
                         className="btn btn-light btn-lg px-5 mx-2"
                         onClick={() => {
                             props.setNewUser(true);
+                            sessionStorage.setItem('gameMode', props.GameModes.Account);
                             props.setGameMode(props.GameModes.Account);
                         }}    
                     >Create Account</button>

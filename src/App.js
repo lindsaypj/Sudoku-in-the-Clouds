@@ -12,7 +12,6 @@ import Account from './views/Account';
 import './styles/css/App.css';
 import './styles/css/font-roboto.css';
 
-
 // Define game modes
 const GameModes = {
   Sudoku4x4Casual: "casual4x4",
@@ -32,13 +31,21 @@ function App() {
   const [user, setUser] = useState();
   const [newUser, setNewUser] = useState(false);
 
-  // Function to retrieve the user from session if stored
+  // Function to retrieve session data if stored
   useEffect(() => {
     const foundUser = sessionStorage.getItem('user');
-    if (foundUser !== null && foundUser.token !== null &&
-        foundUser !== undefined && foundUser.token !== undefined) {
+    const foundGameMode = sessionStorage.getItem('gameMode');
+
+    // Check for user
+    if (foundUser !== null && foundUser !== undefined) {
       setUser(JSON.parse(foundUser));
     }
+
+    // Check for gamemode
+    if (foundGameMode !== null && foundGameMode !== undefined) {
+      setGameMode(foundGameMode);
+    }
+
   }, []);
 
   // Dynamically load content by gamemode

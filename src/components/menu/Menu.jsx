@@ -6,6 +6,7 @@ function Menu({page, setMenuPage, MenuPages, GameModes, setGameMode, closeMenu})
     // Function to handle changing game modes
     function handleChangeGameMode(gameMode) {
         closeMenu();
+        sessionStorage.setItem('gameMode', gameMode);
         setGameMode(gameMode);
     }
 
