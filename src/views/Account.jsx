@@ -5,7 +5,7 @@ import NewUserForm from "../components/NewUserForm.jsx";
 export default function Account({ token, setToken, user, setUser, newUser, setNewUser }) {
 
     // If user is not logged in, display login form
-    if (!token || !user) {
+    if (token === null || token === "" || user === null) {
         if (newUser === true) {
             return <NewUserForm setToken={setToken} setUser={setUser} setNewUser={setNewUser} />
         }
