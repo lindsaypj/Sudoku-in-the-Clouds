@@ -39,6 +39,7 @@ function GameMenu(props) {
                     onClick={() => {
                         sessionStorage.clear();
                         props.setUser(null);
+                        sessionStorage.setItem('gameMode', "");
                         props.setGameMode("");
                     }}
                 >Logout</button>
@@ -50,6 +51,7 @@ function GameMenu(props) {
                     className="btn bg-secondary mx-3 text-white shadow-sm float-end"
                     onClick={() => {
                         props.setNewUser(false);
+                        sessionStorage.setItem('gameMode', "account");
                         props.setGameMode("account");
                     }}
                 >Login</button>
