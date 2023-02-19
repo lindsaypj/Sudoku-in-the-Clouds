@@ -1,7 +1,7 @@
 import React, { useState, useReducer } from "react";
 
-import ShowNumBtn from "./buttons/ShowNumBtn";
-import HideNumBtn from "./buttons/HideNumBtn";
+import ShowNumBtn from "../buttons/ShowNumBtn";
+import HideNumBtn from "../buttons/HideNumBtn";
 
 export default function NewUserForm({ setUser, setNewUser }) {
     // Form fields
