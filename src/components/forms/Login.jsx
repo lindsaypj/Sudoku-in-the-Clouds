@@ -37,6 +37,7 @@ export default function Login(props) {
             if (user !== null && user !== undefined) {
                 props.setUser(user);
                 props.setNewUser(false);
+                props.setForcedLogin(false);
                 sessionStorage.setItem('user', JSON.stringify(user));
             }
         });
