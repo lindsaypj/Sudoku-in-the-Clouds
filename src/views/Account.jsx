@@ -15,7 +15,7 @@ export default function Account(
 
     // Account data states
     let initialShowConflits;
-    if (user !== undefined) {
+    if (user !== undefined && user !== null) {
         initialShowConflits = user.settings.showConflicts;
     }
     const [showConflicts, setShowConflicts] = useState(initialShowConflits);
@@ -97,6 +97,7 @@ export default function Account(
                     else if (response.status === 400) {
                         // Invalid User data or token. Request user login and retry
                         setTempUser(user);
+                        setUser(null);
                         setForcedLogin(true);
                     }
                 })
