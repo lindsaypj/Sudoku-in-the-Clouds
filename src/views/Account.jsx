@@ -38,17 +38,15 @@ export default function Account(
     // Re-attempt to update user After forced Login (400 Bad Request)
     useEffect(() => {
         if (forcedLogin === false && tempUser !== null && tempUser !== undefined) {
-            
             if (editSettings === true) {
                 setUser(tempUser);
                 setTempUser();
                 setEditSettings(true);
                 handleFormSave();
             }
-            else if (deleteUser === true) {
-                handleDeleteUser();
-            }
-            
+        }
+        else if (deleteUser === true) {
+            handleDeleteUser();
         }
     }, [forcedLogin]);
 
