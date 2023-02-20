@@ -7,7 +7,9 @@ import BoolSetting from "../components/account/BoolSetting.jsx";
 
 import EditForm from "../components/forms/EditForm.jsx";
 
-export default function Account({ user, setUser, newUser, setNewUser, forcedLogin, setForcedLogin }) {
+export default function Account(
+    { user, setUser, newUser, setNewUser, forcedLogin, setForcedLogin, setUserFromSession }) {
+    
     // Form states
     const [editSettings, setEditSettings] = useState(false);
 
@@ -18,6 +20,7 @@ export default function Account({ user, setUser, newUser, setNewUser, forcedLogi
     }
     const [showConflicts, setShowConflicts] = useState(initialShowConflits);
     const [tempUser, setTempUser] = useState();
+    const [formErrorMessage, setFormErrorMessage] = useState("");
 
     // Update Account data on user update
     useEffect(() => {
@@ -106,6 +109,11 @@ export default function Account({ user, setUser, newUser, setNewUser, forcedLogi
                         setShowConflicts(updatedUser.settings.showConflicts);
                         setEditSettings(false);
                     }
+                })
+                .catch((response) => {
+                    if (response instanceof TypeError) {
+                        setFormErrorMessage("Network Error: failed to connect to server");
+                    }
                 });
         }
     }
@@ -145,8 +153,9 @@ export default function Account({ user, setUser, newUser, setNewUser, forcedLogi
 
     // Form submition canceled, restore user data
     function handleFormCancel() {
-        setShowConflicts(user.settings.showConflicts);
-        setEditSettings(false);
+        setUserFromSession(); // Restore user data
+        setFormErrorMessage(""); // Clear error messages
+        setEditSettings(false); // Switch from editing to viewing
     }
 
 
@@ -185,7 +194,7 @@ export default function Account({ user, setUser, newUser, setNewUser, forcedLogi
             {/* Settings */}
             <div className="row justify-content-center mb-5">
                 <div className="col-11 col-md-8">
-                    <EditForm editing={editSettings}>
+                    <EditForm editing={editSettings} errorMessage={formErrorMessage}>
                         {/* Header */}
                         <div className="row">
                             <div className="col-12">

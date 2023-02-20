@@ -2,7 +2,7 @@ import React from "react";
 
 import "../../styles/css/EditForm.css";
 
-export default function EditForm({ handleSubmit, classNames, children, editing }) {
+export default function EditForm({ handleSubmit, classNames, children, editing, errorMessage }) {
 
     // Function to apply editing styles
     function getFormClasses() {
@@ -15,8 +15,14 @@ export default function EditForm({ handleSubmit, classNames, children, editing }
     }
     
     return (
-        <form onSubmit={(e) => {e.preventDefault()}} className={getFormClasses()} >
+        <form 
+            onSubmit={(e) => {
+                e.preventDefault()}
+            } 
+            className={getFormClasses()} 
+        >
             {children}
+            <span className="d-block text-danger">{errorMessage}</span>
         </form>
     );
 }

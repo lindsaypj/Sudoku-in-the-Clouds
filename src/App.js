@@ -33,7 +33,7 @@ function App() {
   const [forcedLogin, setForcedLogin] = useState(false);
 
   // Function to retrieve session data if stored
-  useEffect(() => {
+  function setUserFromSession() {
     const foundUser = sessionStorage.getItem('user');
     const foundGameMode = sessionStorage.getItem('gameMode');
 
@@ -46,7 +46,11 @@ function App() {
     if (foundGameMode !== null && foundGameMode !== undefined) {
       setGameMode(foundGameMode);
     }
+  }
 
+  // RUN AFTER PAGE LOAD/RELOAD
+  useEffect(() => {
+    setUserFromSession();
   }, []);
 
   // Dynamically load content by gamemode
@@ -68,6 +72,7 @@ function App() {
                 setNewUser={setNewUser}
                 forcedLogin={forcedLogin}
                 setForcedLogin={setForcedLogin}
+                setUserFromSession={setUserFromSession}
               />; 
       default:
         return <SudokuHome 
