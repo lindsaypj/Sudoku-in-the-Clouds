@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import EditSaveCancelBtn from "../components/buttons/EditSaveCancelBtn.jsx";
 import ColorPreference from "../components/account/ColorPreference.jsx";
 import Login from "../components/forms/Login.jsx";
@@ -7,25 +7,51 @@ import BoolSetting from "../components/account/BoolSetting.jsx";
 
 import EditForm from "../components/forms/EditForm.jsx";
 
-export default function Account({ user, setUser, newUser, setNewUser }) {
+export default function Account({ user, setUser, newUser, setNewUser, forcedLogin, setForcedLogin }) {
     // Form states
     const [editSettings, setEditSettings] = useState(false);
 
     // Account data states
-    const [showConflicts, setShowConflicts] = useState(user.settings.showConflicts);
+    let initialShowConflits;
+    if (user !== undefined) {
+        initialShowConflits = user.settings.showConflicts;
+    }
+    const [showConflicts, setShowConflicts] = useState(initialShowConflits);
+    const [tempUser, setTempUser] = useState();
+
+    // Update Account data on user update
+    useEffect(() => {
+        if (user !== undefined && user !== null) {
+            setShowConflicts(user.settings.showConflicts);
+        }
+    }, [user]);
+
+    // Re-attempt to update user After forced Login (400 Bad Request)
+    useEffect(() => {
+        if (forcedLogin === false && tempUser !== null && tempUser !== undefined) {
+            setUser(tempUser);
+            setTempUser();
+            handleFormSave();
+        }
+    }, [forcedLogin]);
 
 
     ////    COMPONENT ROUTING LOGIC    ////
 
     // If user is not logged in, display login form
-    if (user === null || user === undefined) {
+    if (user === null || user === undefined || forcedLogin === true) {
         // Check for newUser flag (create acconut clicked)
         if (newUser === true) {
             // Render create account form
             return <NewUserForm setUser={setUser} setNewUser={setNewUser} />
         }
         // Render login form
-        return <Login setUser={setUser} setNewUser={setNewUser} />;
+        return <Login
+                    setUser={setUser}
+                    setNewUser={setNewUser}
+                    forcedLogin={forcedLogin}
+                    setForcedLogin={setForcedLogin}
+                />;
     }
 
 
@@ -33,9 +59,55 @@ export default function Account({ user, setUser, newUser, setNewUser }) {
 
     // Function to save user account changes
     function handleFormSave() {
+        let valid = true;
 
-        console.log("Saved");
-        setEditSettings(false);
+        // Validate User data
+        if (showConflicts !== true && showConflicts !== false) {
+            valid = false;
+        }
+
+        if (valid) {
+            // Update user object with form data
+            user.settings.showConflicts = showConflicts;
+
+            const updateURI = "http://localhost:8080/sudoku/users/"+user.username;
+            const params = {
+                method: "put",
+                mode: "cors",
+                body: JSON.stringify(user),
+                headers: {
+                    "Content-Type": "application/json"
+                }
+            };
+
+            // Make Fetch PUT request
+            fetch(updateURI, params)
+                .then(function (response) {
+                    if (response.ok) {
+                        // User successfully updated
+                        return response.json();
+                    }
+                    else if (response.status === 404) {
+                        // User not found
+                        console.log(response);
+                    }
+                    else if (response.status === 400) {
+                        // Invalid User data or token. Request user login and retry
+                        setTempUser(user);
+                        setForcedLogin(true);
+                    }
+                })
+                .then(function (updatedUser) {
+                    // Update Account state with User data from response
+                    if (updatedUser !== null && updatedUser !== undefined) {
+                        setUser(updatedUser);
+                        sessionStorage.setItem('user', JSON.stringify(user));
+
+                        setShowConflicts(updatedUser.settings.showConflicts);
+                        setEditSettings(false);
+                    }
+                });
+        }
     }
 
 

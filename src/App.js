@@ -30,6 +30,7 @@ function App() {
   // Hook to manage Logged in state
   const [user, setUser] = useState();
   const [newUser, setNewUser] = useState(false);
+  const [forcedLogin, setForcedLogin] = useState(false);
 
   // Function to retrieve session data if stored
   useEffect(() => {
@@ -64,7 +65,10 @@ function App() {
                 user={user}
                 setUser={setUser}
                 newUser={newUser}
-                setNewUser={setNewUser} />; 
+                setNewUser={setNewUser}
+                forcedLogin={forcedLogin}
+                setForcedLogin={setForcedLogin}
+              />; 
       default:
         return <SudokuHome 
                 setMenuVisibility={setMenuVisibility}
