@@ -1,20 +1,48 @@
-import React from "react";
-import ColorPreference from "../components/ColorPreference.jsx";
-import Login from "../components/Login.jsx";
-import NewUserForm from "../components/NewUserForm.jsx";
+import React, { useState } from "react";
+import EditSaveCancelBtn from "../components/buttons/EditSaveCancelBtn.jsx";
+import ColorPreference from "../components/account/ColorPreference.jsx";
+import Login from "../components/forms/Login.jsx";
+import NewUserForm from "../components/forms/NewUserForm.jsx";
+import BoolSetting from "../components/account/BoolSetting.jsx";
+
+import EditForm from "../components/forms/EditForm.jsx";
 
 export default function Account({ user, setUser, newUser, setNewUser }) {
+    // Form states
+    const [editSettings, setEditSettings] = useState(false);
+
+    // Account data states
+    const [showConflicts, setShowConflicts] = useState(user.settings.showConflicts);
+
+
+    ////    COMPONENT ROUTING LOGIC    ////
 
     // If user is not logged in, display login form
     if (user === null || user === undefined) {
+        // Check for newUser flag (create acconut clicked)
         if (newUser === true) {
+            // Render create account form
             return <NewUserForm setUser={setUser} setNewUser={setNewUser} />
         }
+        // Render login form
         return <Login setUser={setUser} setNewUser={setNewUser} />;
     }
 
+
+    ////    HTTP REQUEST LOGIC    ////
+
+    // Function to save user account changes
+    function handleFormSave() {
+
+        console.log("Saved");
+        setEditSettings(false);
+    }
+
+
+    ////    RENDERING LOGIC    ////
+
     // Function to get only the color properties of the user object
-    function getColors() {
+    function getColorPreferences() {
         const preferences = Object.keys(user.preferences);
         let colors = {
             "colors": [],
@@ -24,11 +52,13 @@ export default function Account({ user, setUser, newUser, setNewUser }) {
         // Loop over prefernces and find colors
         for (let i = 0; i < preferences.length; i++) {
             if (preferences[i].includes("Color")) {
+                // Store color object
                 colors.colors.push(user.preferences[preferences[i]]);
+                // Store property name
                 colors.names.push(
                     preferences[i].charAt(0).toUpperCase() + // Capitalize
                     preferences[i].slice(1)
-                    .replace("Color", "") // Remove color
+                    .replace("Color", "")       // Remove color
                     .replace(/([A-Z])/g, ' $1') // Add space between words
                 );
             }
@@ -40,6 +70,15 @@ export default function Account({ user, setUser, newUser, setNewUser }) {
         }
         return colors.colors;
     }
+
+    // Form submition canceled, restore user data
+    function handleFormCancel() {
+        setShowConflicts(user.settings.showConflicts);
+        setEditSettings(false);
+    }
+
+
+    ////    RENDER    ////
 
     return (
         <div className="container pb-5 mb-5">
@@ -74,37 +113,31 @@ export default function Account({ user, setUser, newUser, setNewUser }) {
             {/* Settings */}
             <div className="row justify-content-center mb-5">
                 <div className="col-11 col-md-8">
-                    {/* Header */}
-                    <div className="row">
-                        <div className="col-12">
-                            <h3 className="d-inline pe-3">Settings</h3>
-                            <button
-                                type="button"
-                                className="btn btn-primary align-top shadow-sm float-end"
-                                onClick={() => {}}
-                            >Edit</button>
-                            <hr></hr>
+                    <EditForm editing={editSettings}>
+                        {/* Header */}
+                        <div className="row">
+                            <div className="col-12">
+                                <h3 className="d-inline pe-3">Settings</h3>
+                                <EditSaveCancelBtn 
+                                    editing={editSettings}
+                                    setEditing={setEditSettings}
+                                    handleSave={handleFormSave}
+                                    handleCancel={handleFormCancel}
+                                    styles={" align-top shadow-sm float-end"}
+                                />
+                                <hr></hr>
+                            </div>
                         </div>
-                    </div>    
 
-                    {/* Show Conflicts */}
-                    <div className="row">
-                        {/* Description */}
-                        <div className="col-12 col-md-6">
-                            <p>
-                                Show Conflicts: <span className="fw-bold">{String(user.settings.showConflicts)}</span>
-                            </p>
-                            <p>
-                                A conflict occurs when two cells in the same row, column,
-                                or group have the same value.
-                            </p>
-                        </div>
-                        {/* Image examples */}
-                        <div className="col-12 col-md-6">
-
-                        </div>
-                    </div>
-                    
+                        {/* Show Conflicts */}
+                        <BoolSetting
+                            setting={showConflicts}
+                            setSetting={setShowConflicts}
+                            name={"Show Conflicts"}
+                            desc={"A conflict occurs when two cells in the same row, column, or group have the same value."}
+                            editing={editSettings}
+                        />
+                    </EditForm>
                 </div>
             </div>
 
@@ -115,12 +148,7 @@ export default function Account({ user, setUser, newUser, setNewUser }) {
                     <div className="row">
                         <div className="col-12">
                             <h3 className="d-inline pe-3">Preferences</h3>
-                            <button
-                                type="button"
-                                className="btn btn-secondary align-top shadow-sm float-end"
-                                disabled={true}
-                                aria-disabled={true}
-                            >Edit</button>
+                            <EditSaveCancelBtn disabled={true} />
                             <hr></hr>
                         </div>
                     </div>
@@ -128,7 +156,7 @@ export default function Account({ user, setUser, newUser, setNewUser }) {
                     {/* Colors */}
                     <div className="row">
                         <div className="col-12">
-                            {getColors().map((color, colorIndex) => {
+                            {getColorPreferences().map((color, colorIndex) => {
                                     return (
                                         <ColorPreference key={colorIndex} colorObject={color} colorName={color.name} />
                                     );

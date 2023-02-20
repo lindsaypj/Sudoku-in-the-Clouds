@@ -1,0 +1,9 @@
+
+.edit-form {
+    /* OUTLINE */
+    outline: black solid 4px;
+    outline-offset: 1rem;
+    border-radius: 0.1rem;
+
+    /* Background Color */
+}
