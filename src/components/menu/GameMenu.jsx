@@ -7,21 +7,21 @@ import Menu from './Menu.jsx';
 // Menu pages
 const MenuPages = {
     Main: "main",
-    GameModes: "game-modes",
-    GameModeCasual: "game-mode-casual"
+    GameModes: "game-modes"
 };
 
 function GameMenu(props) {
     const [show, setShow] = useState(false);
     const [menuPage, setMenuPage] = useState("main");
+    const [menuTitle, setMenuTitle] = useState("SUDOKU MENU");
 
     // Handle showing the menu on request
     useEffect(() => {
-        setMenuPage(props.page);
+        handleMenuPageChange(props.page);
         setShow(props.show);
     }, [props.show]);
 
-    // Close the modal and update App state
+    // Close the menu and update App state
     const handleClose = () => {
         setShow(false); // Hide modal
         props.setShow(false); // update app state
@@ -29,8 +29,31 @@ function GameMenu(props) {
 
     const handleBack = () => {
         setMenuPage(MenuPages.Main);
+        setMenuTitle(getTitleByPage(MenuPages.Main))
     }
 
+    // Function to handle updating the menu page and components
+    function handleMenuPageChange(page) {
+        setMenuPage(page);
+        setMenuTitle(getTitleByPage(page));
+    }
+
+
+    ////    RENDERING FUNCTIONS    ////
+
+    // Function to update the title using the given page as reference
+    function getTitleByPage(page) {
+        switch(page) {
+            case MenuPages.Main:
+                return "SUDOKU MENU";
+            case MenuPages.GameModes:
+                return "Select a Game Mode";
+            default:
+                return "SUDOKU MENU";
+        }
+    }
+
+    // Function to render either the login or logout button in navbar
     function getLoginLogout() {
         if (props.user !== null && props.user !== undefined) {
             return (
@@ -78,7 +101,7 @@ function GameMenu(props) {
     }
 
     // Function to render the footer (add back button if not on main)
-    function getFooter() {
+    function getFooterContent() {
         if (menuPage !== MenuPages.Main) {
            return (
                 <>
@@ -98,8 +121,6 @@ function GameMenu(props) {
                 </Button>
             );
         }
-        
-        
     }
 
     return (
@@ -114,20 +135,20 @@ function GameMenu(props) {
             centered
         >
             <Modal.Header>
-                <Modal.Title className='mx-auto'>SUDOKU MENU</Modal.Title>
+                <Modal.Title className='mx-auto'>{menuTitle}</Modal.Title>
             </Modal.Header>
             <Modal.Body>
                 <Menu
                     page={menuPage}
                     MenuPages={MenuPages}
-                    setMenuPage={setMenuPage}
+                    handleMenuPageChange={handleMenuPageChange}
                     GameModes={props.GameModes}
                     setGameMode={props.setGameMode}
                     closeMenu={handleClose}
                 />
             </Modal.Body>
             <Modal.Footer className='justify-content-center'>
-                {getFooter()}
+                {getFooterContent()}
             </Modal.Footer>
         </Modal>
         </>
