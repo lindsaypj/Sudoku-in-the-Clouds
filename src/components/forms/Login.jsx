@@ -46,6 +46,11 @@ export default function Login(props) {
                 props.setForcedLogin(false);
                 sessionStorage.setItem('user', JSON.stringify(user));
             }
+        })
+        .catch((error) => {
+            if (error instanceof TypeError) {
+                setErrorMessage("Network Error: failed to connect to server");
+            }
         });
     }
 
