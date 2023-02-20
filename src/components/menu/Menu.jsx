@@ -29,25 +29,24 @@ function Menu({page, setMenuPage, MenuPages, GameModes, setGameMode, closeMenu})
             case MenuPages.GameModes:
                 return (
                     <div>
-                        <div className='d-block text-center p-1'>
-                            <Button onClick={() => {setMenuPage("game-mode-casual")}} >Casual</Button>
+                        <div className="text-center">
+                            <h5 className="m-0">Casual</h5>
+                            <hr className="mt-1 mx-5"></hr>
+
+                            <div className='d-inline text-center p-1'>
+                                <Button onClick={() => {handleChangeGameMode(GameModes.Sudoku4x4Casual)}} >4 x 4</Button>
+                            </div>
+                            <div className='d-inline text-center p-1'>
+                                <Button onClick={() => {handleChangeGameMode(GameModes.Sudoku9x9Casual)}} >9 x 9</Button>
+                            </div>
+                            <div className='d-inline text-center p-1'>
+                                <Button onClick={() => {handleChangeGameMode(GameModes.Sudoku16x16Casual)}} >16 x 16</Button>
+                            </div>
                         </div>
                         <div className='d-block text-center p-1'>
+                            <h5 className="m-0 mt-3">Testing</h5>
+                            <hr className="mt-1 mx-5"></hr>
                             <Button onClick={() => {handleChangeGameMode(GameModes.Testing)}} >Testing</Button>
-                        </div>
-                    </div>
-                );
-            case MenuPages.GameModeCasual:
-                return (
-                    <div>
-                        <div className='d-block text-center p-1'>
-                            <Button onClick={() => {handleChangeGameMode(GameModes.Sudoku4x4Casual)}} >4 x 4</Button>
-                        </div>
-                        <div className='d-block text-center p-1'>
-                            <Button onClick={() => {handleChangeGameMode(GameModes.Sudoku9x9Casual)}} >9 x 9</Button>
-                        </div>
-                        <div className='d-block text-center p-1'>
-                            <Button onClick={() => {handleChangeGameMode(GameModes.Sudoku16x16Casual)}} >16 x 16</Button>
                         </div>
                     </div>
                 );
