@@ -6,6 +6,7 @@ import NewUserForm from "../components/forms/NewUserForm.jsx";
 import BoolSetting from "../components/account/BoolSetting.jsx";
 
 import EditForm from "../components/forms/EditForm.jsx";
+import DeleteConfirmation from "../components/menu/DeleteConfirmation.jsx";
 
 export default function Account(
     { user, setUser, newUser, setNewUser, forcedLogin, setForcedLogin, setUserFromSession }) {
@@ -20,7 +21,12 @@ export default function Account(
     }
     const [showConflicts, setShowConflicts] = useState(initialShowConflits);
     const [tempUser, setTempUser] = useState();
+    const [deleteConfim, setDeleteConfim] = useState(false);
+    const [deleteUser, setDeleteUser] = useState(false);
+
+    // Error messages
     const [formErrorMessage, setFormErrorMessage] = useState("");
+    const [deleteErrorMessage, setDeleteErrorMessage] = useState("");
 
     // Update Account data on user update
     useEffect(() => {
@@ -32,9 +38,17 @@ export default function Account(
     // Re-attempt to update user After forced Login (400 Bad Request)
     useEffect(() => {
         if (forcedLogin === false && tempUser !== null && tempUser !== undefined) {
-            setUser(tempUser);
-            setTempUser();
-            handleFormSave();
+            
+            if (editSettings === true) {
+                setUser(tempUser);
+                setTempUser();
+                setEditSettings(true);
+                handleFormSave();
+            }
+            else if (deleteUser === true) {
+                handleDeleteUser();
+            }
+            
         }
     }, [forcedLogin]);
 
@@ -85,7 +99,7 @@ export default function Account(
 
             // Make Fetch PUT request
             fetch(updateURI, params)
-                .then(function (response) {
+                .then((response) => {
                     if (response.ok) {
                         // User successfully updated
                         return response.json();
@@ -97,7 +111,7 @@ export default function Account(
                     else if (response.status === 400) {
                         // Invalid User data or token. Request user login and retry
                         setTempUser(user);
-                        setUser(null);
+                        setUser();
                         setForcedLogin(true);
                     }
                 })
@@ -117,6 +131,48 @@ export default function Account(
                     }
                 });
         }
+    }
+
+
+    // Function to handle DELETE user request
+    function handleDeleteUser() {
+        setDeleteConfim(false);
+
+        const deleteURI = "http://localhost:8080/sudoku/users/"+user.username;
+        const params = {
+            method: "delete",
+            mode: "cors",
+            body: JSON.stringify(user),
+            headers: {
+                "Content-Type": "application/json"
+            }
+        }
+
+        fetch(deleteURI, params)
+            .then((response) => {
+                // Handle response
+                if (response.ok) {
+                    sessionStorage.clear();
+                    setUser();
+                    setTempUser();
+                    setEditSettings(false);
+                    setForcedLogin(false);
+                    setDeleteUser(false);
+                }
+                else if (response.status === 400) {
+                    setDeleteUser(true);
+                    setForcedLogin(true);
+                }
+            })
+            .catch((error) => {
+                if (error instanceof TypeError) {
+                    setDeleteErrorMessage("Network Error: failed to connect to server");
+                }
+                else {
+                    setDeleteErrorMessage("An error occured when trying to delete. Try again.")
+                }
+                
+            })
     }
 
 
@@ -248,6 +304,27 @@ export default function Account(
                     </div>
                 </div>
             </div>
+
+            {/* Delete User */}
+            <div className="row">
+                <div className="col-12 text-center">
+                    <button
+                        type={"button"}
+                        className="btn btn-danger"
+                        onClick={() => {setDeleteConfim(true)}}
+                    >
+                        Delete Account
+                    </button>
+                    <span className="d-block text-danger">{deleteErrorMessage}</span>
+                </div>
+            </div>
+
+            {/* Delete Confimation Modal */}
+            <DeleteConfirmation
+                show={deleteConfim}
+                setShow={setDeleteConfim}
+                handleDelete={handleDeleteUser} 
+            />
         </div>
     );
 }
