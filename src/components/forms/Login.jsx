@@ -27,7 +27,7 @@ export default function Login(props) {
                 return response.json();
             }
             else {
-                if (response.status === 400) {
+                if (response.status === 400 || response.status === 404) {
                     setErrorMessage("Username or password is invalid");
                     setPassword("");
                 }
