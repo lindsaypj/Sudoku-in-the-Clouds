@@ -10,6 +10,12 @@ export default function Login(props) {
     function loginAttempt(event) {
         // Prevent reload
         event.preventDefault();
+        
+        // Validate credentials
+        if (username.length < 4 || username.length > 20 || password.length < 7) {
+            setErrorMessage("Username or password is invalid");
+            return;
+        }        
 
         const loginURI = "http://localhost:8080/sudoku/users/"+username+"?token="+password;
         const params = {
