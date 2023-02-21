@@ -27,43 +27,109 @@ function App() {
   const [menuVisibility, setMenuVisibility] = useState(false);    // Game Menu visibility
   const [initialMenuPage, setInitialMenuPage] = useState("main");
 
-  // Hook to manage Logged in state
+  // Hooks to manage Logged in state
   const [user, setUser] = useState();
   const [newUser, setNewUser] = useState(false);
   const [forcedLogin, setForcedLogin] = useState(false);
 
-  // Function to retrieve session data if stored
-  function setUserFromSession() {
-    const foundUser = sessionStorage.getItem('user');
-    const foundGameMode = sessionStorage.getItem('gameMode');
-
-    // Check for user
-    if (foundUser !== null && foundUser !== undefined) {
-      setUser(JSON.parse(foundUser));
-    }
-
-    // Check for gamemode
-    if (foundGameMode !== null && foundGameMode !== undefined) {
-      setGameMode(foundGameMode);
-    }
-  }
+  // Hooks to manage board states
+  const [gameData, setGameData] = useState();
 
   // RUN AFTER PAGE LOAD/RELOAD
   useEffect(() => {
     setUserFromSession();
+    setGameModeFromSession();
+    setGameDataFromSession();
   }, []);
 
-  // Dynamically load content by gamemode
+
+  ////    SESSION ACCESS METHODS    ////
+
+  // Function to load user data from session
+  function setUserFromSession() {
+    setUser(getSessionData('user', true));
+  }
+
+  // Function to load gamemode from session
+  function setGameModeFromSession() {
+    setGameMode(getSessionData('gameMode', false));
+  }
+
+  // Function to load board data from session
+  function setGameDataFromSession() {
+    const foundItem = getSessionData('game-data', true);
+
+    if (foundItem !== undefined && foundItem !== null) {
+      setGameData(foundItem);
+    }
+    else {
+      setGameData({
+        testing: {
+          numBoards: null,
+          boardSize: null,
+          hideNums: null,
+          boards: {
+            board4: null,
+            board9: null,
+            board16: null
+          }
+        },
+        casual: {
+          board4: null,
+          board9: null,
+          board16: null
+        }
+      })
+    }
+  }
+
+
+  function getSessionData(item, parseFlag) {
+    const foundItem = sessionStorage.getItem(item);
+
+    if (foundItem !== null && foundItem !== undefined) {
+      if (parseFlag) {
+        return JSON.parse(foundItem);
+      }
+      else {
+        return foundItem;
+      }
+    }
+  }
+  
+
+  
+  ////    RENDER SELECTED GAMEMODE    ////
+
   function renderGameMode(gameMode) {
     switch(gameMode) {
       case GameModes.Testing:
-        return <Testing setMenuVisibility={setMenuVisibility}/>;
+        return <Testing
+                gameData={gameData}
+                setGameData={setGameData}
+                setMenuVisibility={setMenuVisibility}
+              />;
       case GameModes.Sudoku4x4Casual:
-        return <SudokuCasual size={4} setMenuVisibility={setMenuVisibility} />;
+        return <SudokuCasual
+                gameData={gameData}
+                setGameData={setGameData}
+                size={4}
+                setMenuVisibility={setMenuVisibility}
+              />;
       case GameModes.Sudoku9x9Casual:
-        return <SudokuCasual size={9} setMenuVisibility={setMenuVisibility} />;
+        return <SudokuCasual
+                gameData={gameData}
+                setGameData={setGameData}
+                size={9}
+                setMenuVisibility={setMenuVisibility}
+              />;
       case GameModes.Sudoku16x16Casual:
-        return <SudokuCasual size={16} setMenuVisibility={setMenuVisibility} />;
+        return <SudokuCasual
+                gameData={gameData}
+                setGameData={setGameData}
+                size={16}
+                setMenuVisibility={setMenuVisibility}
+              />;
       case GameModes.Account:
         return <Account
                 user={user}

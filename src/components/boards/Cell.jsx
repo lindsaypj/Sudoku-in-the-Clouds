@@ -14,6 +14,12 @@ function Cell({ cellIndex, size, value, cellUpdateCallback, boardIndex, textVisi
     const [inputValue, setInputValue] = useState("");
     const [displayValue, setDisplayValue] = useState(value);
 
+    useEffect(() => {
+        setDisplayValue(value);
+        setCellBGColor();
+        setCellTextColor();
+    }, [value]);
+
     // Hook to manage input pattern (prevents unwated input values)
     const [inputPattern, setInputPattern] = useState(INPUT_PATTERNS[size]);
     
@@ -41,14 +47,20 @@ function Cell({ cellIndex, size, value, cellUpdateCallback, boardIndex, textVisi
     function handleNewInputValue(newValue) {
         // Clear input value unless expecting second digit
         if (size > 9) {
-            setInputValue(newValue);
+            if (newValue === "0" || newValue === 0) {
+                setInputValue("");
+            }
+            else {
+                setInputValue(newValue);
+            }
+            
         }
         else {
             setInputValue("");
         }
         
         // Set the Display value (prevent value from being "")
-        if (newValue === "") {
+        if (newValue === 0) {
             setDisplayValue(0);
         }
         else {
@@ -66,7 +78,7 @@ function Cell({ cellIndex, size, value, cellUpdateCallback, boardIndex, textVisi
     useEffect(() => {
         setCellBGColor();
         setCellTextColor();
-    }, [textVisibility]);
+    }, [textVisibility, displayValue]);
 
     // Set Input pattern on size change
     useEffect(() => {
@@ -80,7 +92,7 @@ function Cell({ cellIndex, size, value, cellUpdateCallback, boardIndex, textVisi
             {/* Cell input element (Interactable) */}
             <input 
                 type={'text'}
-                className={"cell size-"+size+" cell-bg-"+cellBGColor}
+                className={"cell size-"+size+" cell-bg-"+cellBGColor+ " cell-text-transparent"}
                 tabIndex={boardIndex}
                 pattern={inputPattern}
                 value={inputValue}

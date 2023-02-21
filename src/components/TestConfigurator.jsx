@@ -56,14 +56,14 @@ function TestConfigurator(props) {
             {/* NUMBER OF BOARDS */}
             <div className="bg-light m-1 mt-3 d-inline-block">
                 <p className="bg-light mb-0">Number Of Boards: {props.numBoards}</p>
-                <Form.Range 
-                    type="range" 
+                <Form.Range
+                    type="range"
                     className="form-range min-w-200"
-                    defaultValue={1}
-                    min="1" 
-                    max="100" 
+                    min="1"
+                    max="50"
                     step="1"
-                    onChange={(e) => props.setNumBoards(e.target.value)}
+                    value={props.numBoards}
+                    onChange={(e) => props.setNumBoards(Number.parseInt(e.target.value))}
                 />
             </div>
         </div>

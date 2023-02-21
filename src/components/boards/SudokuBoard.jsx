@@ -1,14 +1,24 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useReducer } from "react";
 import Cell from "./Cell.jsx";
 
 import '../.././styles/css/board.css';
 
-function SudokuBoard({ size, initialBoard, boardIndex, hideNums }) {
+function SudokuBoard({ size, initialBoard, saveState, handleBoardUpdate, boardIndex, hideNums }) {
 
     ////    BOARD STATE MANAGMENT    ////
 
     const [cells, setCells] = useState([]);
-    const boardIdentifier = size+"-board-"+boardIndex;
+    const [cellRows, setCellRows] = useReducer(() => {
+        const rows = [];
+        for (let row = 0; row < size; row++) {
+            const cellCols = [];
+            for (let col = 0; col < size; col++) {
+                cellCols[col] = row * size + col;
+            }
+            rows[row] = cellCols;
+        }
+        return rows;
+    }, []);
     const cellCount = size*size;
 
     // Callback function to update the board when a cell is updated
@@ -25,45 +35,38 @@ function SudokuBoard({ size, initialBoard, boardIndex, hideNums }) {
 
         // Update BoardState
         if (valid) {
+            // Update state
             cells[index] = value;
-            sessionStorage.setItem(boardIdentifier, JSON.stringify(cells));
+            handleBoardUpdate(boardIndex, cells);
         }
     }
 
 
     ////    BOARD INITIALIZATION    ////
 
-    // Load board data from session on load
     // Check if session data exists
-    const loadCells = JSON.parse(sessionStorage.getItem(boardIdentifier));
-    if (loadCells !== null && loadCells !== undefined) {
-        for (let i = 0; i < loadCells.length; i++) {
-            cells[i] = loadCells[i];
+    useEffect(() => {
+        if (saveState !== null && saveState !== undefined && saveState.length === cellCount) {
+            setCells(saveState);
         }
-    }
-    // Check if initialBoard was passed
-    else if (initialBoard !== undefined && initialBoard !== null && initialBoard.length === cellCount) {
-        cells.push(...initialBoard);
-    }
-    // Load blank board
-    else {
-        for (let i = 0; i < cellCount; i++) {
-            cells[i] = 0;
+        // Check if initialBoard was passed
+        else if (initialBoard !== undefined && initialBoard !== null && initialBoard.length === cellCount) {
+            setCells(initialBoard);
         }
-    }
-
+        // Load blank board
+        else {
+            setCells(new Array(cellCount).fill(0));
+        }
+    }, [saveState, initialBoard]);
+    
 
     ////    RENDER BOARD    ////
 
     // Generate Rows and cols to map through
-    const cellRows = [];
-    for (let row = 0; row < size; row++) {
-        const cellCols = [];
-        for (let col = 0; col < size; col++) {
-            cellCols[col] = row * size + col;
-        }
-        cellRows[row] = cellCols;
-    }
+    useEffect(() => {
+        setCellRows();
+    }, [size]);
+    
 
     return(
         <div className={"board board-"+ size}>
@@ -76,7 +79,7 @@ function SudokuBoard({ size, initialBoard, boardIndex, hideNums }) {
                         
                         // Prevent editing initial values
                         let disabled = true;
-                        if (initialBoard === undefined || initialBoard[colIndex] === 0) {
+                        if (initialBoard === undefined || initialBoard === null || initialBoard[colIndex] === 0) {
                             disabled = false;
                         }
                         const cellIndex = (rowIndex * size) + colIndex;
