@@ -37,6 +37,9 @@ function Cell({ cellIndex, size, value, cellUpdateCallback, boardIndex, textVisi
             return "transparent";
         }
         else if (textVisibility) {
+            if (disabled) {
+                return COLORS[14];
+            }
             return COLORS[0];
         }
         return COLORS[displayValue];

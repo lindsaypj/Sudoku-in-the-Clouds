@@ -67,7 +67,7 @@ function SudokuBoard({ size, initialBoard, saveState, handleBoardUpdate, boardIn
         else {
             setCells(new Array(cellCount).fill(0));
         }
-    }, [saveState, initialBoard]);
+    }, [saveState, initialBoard, size, cellCount]);
     
 
     ////    RENDER BOARD    ////

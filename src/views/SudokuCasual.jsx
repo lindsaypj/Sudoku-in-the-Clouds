@@ -57,6 +57,11 @@ function SudokuCasual({ gameData, setGameData, size, setMenuVisibility }) {
         const initState = getBoardsBySize(size, "init");
         if (initState !== undefined && initState !== null) {
             setInitialBoard(initState);
+
+            const saveState = getBoardsBySize(size, "save");
+            if (saveState !== undefined && saveState !== null) {
+                setBoard(saveState);
+            }
             setLoading(false);
         }
         else {
