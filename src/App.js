@@ -151,7 +151,8 @@ function App() {
         setShow={setMenuVisibility}
         GameModes={GameModes}
         gameMode={gameMode}
-        setGameMode={setGameMode} 
+        setGameMode={setGameMode}
+        setGameData={setGameData}
         user={user}
         setUser={setUser}
         setNewUser={setNewUser}

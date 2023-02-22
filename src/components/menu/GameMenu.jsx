@@ -4,6 +4,8 @@ import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import Menu from './Menu.jsx';
 
+import {GameData} from "../../classes/GameData.js";
+
 // Menu pages
 const MenuPages = {
     Main: "main",
@@ -64,6 +66,7 @@ function GameMenu(props) {
                         props.setUser(null);
                         sessionStorage.setItem('gameMode', "");
                         props.setGameMode("");
+                        props.setGameData(new GameData());
                     }}
                 >Logout</button>
             );
