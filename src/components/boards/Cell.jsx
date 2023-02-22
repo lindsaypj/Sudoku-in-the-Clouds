@@ -96,9 +96,11 @@ function Cell({ cellIndex, size, value, cellUpdateCallback, boardIndex, textVisi
                 tabIndex={boardIndex}
                 pattern={inputPattern}
                 value={inputValue}
-                disabled={disabled}
-                onChange={(e) =>
-                    handleNewInputValue(e.target.validity.valid ? e.target.value : 0)}
+                onChange={(e) => {
+                    if (!disabled) {
+                        handleNewInputValue(e.target.validity.valid ? e.target.value : 0)
+                    }   
+                }}
             />
         </div>
     );
