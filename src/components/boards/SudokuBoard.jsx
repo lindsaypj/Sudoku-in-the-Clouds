@@ -36,8 +36,18 @@ function SudokuBoard({ size, initialBoard, saveState, handleBoardUpdate, boardIn
         // Update BoardState
         if (valid) {
             // Update state
-            cells[index] = value;
-            handleBoardUpdate(boardIndex, cells);
+            const updatedCells = cells.map((current, cellIndex) => {
+                if (cellIndex === index) {
+                  // Set the updated value
+                  return value;
+                } else {
+                  // The rest haven't changed
+                  return current;
+                }
+              });
+              setCells(updatedCells);
+            // Update GameData + session
+            handleBoardUpdate(boardIndex, updatedCells);
         }
     }
 
@@ -75,14 +85,13 @@ function SudokuBoard({ size, initialBoard, saveState, handleBoardUpdate, boardIn
                 return (
                 <div key={rowIndex} className="cell-row">
                     {row.map((cellValue, colIndex) => {
-                        // Store value in BoardState
+                        const cellIndex = (rowIndex * size) + colIndex;
                         
                         // Prevent editing initial values
                         let disabled = true;
-                        if (initialBoard === undefined || initialBoard === null || initialBoard[colIndex] === 0) {
+                        if (initialBoard === undefined || initialBoard === null || initialBoard[cellIndex] === 0) {
                             disabled = false;
                         }
-                        const cellIndex = (rowIndex * size) + colIndex;
                         return (
                             <Cell
                                 key={cellIndex}

@@ -75,9 +75,16 @@ function App() {
           }
         },
         casual: {
-          board4: null,
-          board9: null,
-          board16: null
+          saveStates: {
+            board4: null,
+            board9: null,
+            board16: null
+          },
+          initStates: {
+            board4: null,
+            board9: null,
+            board16: null
+          }
         }
       })
     }

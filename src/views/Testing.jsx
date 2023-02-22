@@ -11,7 +11,6 @@ import ".././styles/css/testing.css";
  * @returns Testing view component
  */
 function Testing({ gameData, setGameData, setMenuVisibility }) {
-    // sessionStorage.clear();
     let initialNumBoards;
     let initialBoardSize;
     let initialHideNums;
@@ -119,11 +118,13 @@ function Testing({ gameData, setGameData, setMenuVisibility }) {
     }
 
     function handleBoardUpdate(boardIndex, newBoard) {
-        console.log(boardIndex +" : "+ newBoard );
+        // Update local state
         boards[boardIndex] = newBoard;
 
+        // Update GameData with new data
         setBoardsBySize(boardSize, boards);
-        console.log(gameData.testing.boards);
+
+        // Store new GameData in session
         sessionStorage.setItem("game-data", JSON.stringify(gameData));
     }
 
@@ -167,7 +168,6 @@ function Testing({ gameData, setGameData, setMenuVisibility }) {
                                     initialBoard={null}
                                     hideNums={hideNums}
                                     boardIndex={index}
-                                    gameMode={"testing"}
                                     saveState={boards[index]}
                                     handleBoardUpdate={handleBoardUpdate}
                                 />
