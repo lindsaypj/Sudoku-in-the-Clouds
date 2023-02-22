@@ -8,9 +8,13 @@ import SudokuCasual from './views/SudokuCasual';
 import SudokuHome from './views/SudokuHome';
 import Account from './views/Account';
 
+// Class imports
+import {GameData} from "./classes/GameData.js";
+
 // Style imports
 import './styles/css/App.css';
 import './styles/css/font-roboto.css';
+
 
 // Define game modes
 const GameModes = {
@@ -35,7 +39,8 @@ function App() {
   // Hooks to manage board states
   const [gameData, setGameData] = useState();
 
-  // RUN AFTER PAGE LOAD/RELOAD
+
+  // LOAD DATA FROM SESSION (on load/reload)
   useEffect(() => {
     setUserFromSession();
     setGameModeFromSession();
@@ -63,34 +68,11 @@ function App() {
       setGameData(foundItem);
     }
     else {
-      setGameData({
-        testing: {
-          numBoards: null,
-          boardSize: null,
-          hideNums: null,
-          boards: {
-            board4: null,
-            board9: null,
-            board16: null
-          }
-        },
-        casual: {
-          saveStates: {
-            board4: null,
-            board9: null,
-            board16: null
-          },
-          initStates: {
-            board4: null,
-            board9: null,
-            board16: null
-          }
-        }
-      })
+      setGameData(new GameData());
     }
   }
 
-
+  // Function to load an item from session if it exists
   function getSessionData(item, parseFlag) {
     const foundItem = sessionStorage.getItem(item);
 
@@ -103,7 +85,6 @@ function App() {
       }
     }
   }
-  
 
   
   ////    RENDER SELECTED GAMEMODE    ////
