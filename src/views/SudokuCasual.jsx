@@ -63,7 +63,7 @@ function SudokuCasual({ gameData, setGameData, size, setMenuVisibility }) {
             setLoading(true);
             fetchBoard();
         }
-    }, []);
+    }, [size]);
 
 
     function getBoardsBySize(size, boardType) {
