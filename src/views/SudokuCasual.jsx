@@ -51,7 +51,6 @@ function SudokuCasual({ user, setUser, forcedLogin, setForcedLogin, setReturnAft
         if (forcedLogin === false && newUser === false && gameData.casual.updateWinPostLogin === true) {
             // Only update if user last gen was > 5 seconds ago
             if ((Date.now() - user.lastGen) < 5000) {
-                console.log("UPDATING AGAIN!");
                 setUpdateWinPostLogin(false);
                 gameData.casual.updateWinPostLogin = false;
                 sessionStorage.setItem("game-data", JSON.stringify(gameData));
@@ -89,7 +88,6 @@ function SudokuCasual({ user, setUser, forcedLogin, setForcedLogin, setReturnAft
                 // Board should be int array
                 // Return array with board data to be rendered inside board
                 setLoading(false);
-                console.log("Board Retrieved");
                 // Update local boards
                 setInitialBoard(newBoard);
                 setBoard(newBoard);
@@ -155,7 +153,6 @@ function SudokuCasual({ user, setUser, forcedLogin, setForcedLogin, setReturnAft
     // Function to update user wins
     // Use PUT @ http://localhost:8080/sudoku/users/{usename}
     function updateUserWins() {
-        console.log("Fetch Update User");
         // Update user object with new won game
         switch(size) {
             case 4: 
@@ -194,7 +191,6 @@ function SudokuCasual({ user, setUser, forcedLogin, setForcedLogin, setReturnAft
                 }
                 else if (response.status === 404) {
                     // User not found
-                    console.log(response);
                     setGlobalNotification("User account not found");
                     setIsGlobalError(true);
                 }
@@ -215,7 +211,6 @@ function SudokuCasual({ user, setUser, forcedLogin, setForcedLogin, setReturnAft
             .then(function(updatedUser) {
                 // Update Account state with User data from response
                 if (updatedUser !== null && updatedUser !== undefined) {
-                    console.log("User Updated");
                     // Save updated user
                     setUser(updatedUser);
                     sessionStorage.setItem('user', JSON.stringify(updatedUser));
@@ -242,7 +237,6 @@ function SudokuCasual({ user, setUser, forcedLogin, setForcedLogin, setReturnAft
     // Function to handle Game completion
     
     function handleWin() {
-        console.log("YOU WIN!");
         setComplete(true);
         gameData.casual.savedIsComplete = true;
         sessionStorage.setItem("game-data", JSON.stringify(gameData));
