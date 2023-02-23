@@ -2,11 +2,14 @@
 import React, { useState, useEffect } from 'react';
 
 // View page Imports
-import GameMenu from './components/menu/GameMenu';
 import Testing from './views/Testing';
 import SudokuCasual from './views/SudokuCasual';
 import SudokuHome from './views/SudokuHome';
 import Account from './views/Account';
+
+// Component Imports
+import GameMenu from './components/menu/GameMenu';
+import Notification from './components/Notification';
 
 // Class imports
 import {GameData} from "./classes/GameData.js";
@@ -30,11 +33,14 @@ function App() {
   const [gameMode, setGameMode] = useState();    // Game Mode
   const [menuVisibility, setMenuVisibility] = useState(false);    // Game Menu visibility
   const [initialMenuPage, setInitialMenuPage] = useState("main");
+  const [globalNotification, setGlobalNotification] = useState("");
+  const [isGlobalError, setIsGlobalError] = useState(false);
 
   // Hooks to manage Logged in state
   const [user, setUser] = useState();
   const [newUser, setNewUser] = useState(false);
   const [forcedLogin, setForcedLogin] = useState(false);
+  const [returnAfterLogin, setReturnAfterLogin] = useState();
 
   // Hooks to manage board states
   const [gameData, setGameData] = useState();
@@ -99,34 +105,72 @@ function App() {
               />;
       case GameModes.Sudoku4x4Casual:
         return <SudokuCasual
+                user={user}
+                setUser={setUser}
+                forcedLogin={forcedLogin}
+                setForcedLogin={setForcedLogin}
+                setReturnAfterLogin={setReturnAfterLogin}
+                newUser={newUser}
+                setNewUser={setNewUser}
                 gameData={gameData}
                 setGameData={setGameData}
                 size={4}
-                setMenuVisibility={setMenuVisibility}
+                GameModes={GameModes}
+                gameMode={gameMode}
+                setGameMode={setGameMode}
+                setGlobalNotification={setGlobalNotification}
+                setIsGlobalError={setIsGlobalError}
               />;
       case GameModes.Sudoku9x9Casual:
         return <SudokuCasual
+                user={user}
+                setUser={setUser}
+                forcedLogin={forcedLogin}
+                setForcedLogin={setForcedLogin}
+                setReturnAfterLogin={setReturnAfterLogin}
+                newUser={newUser}
+                setNewUser={setNewUser}
                 gameData={gameData}
                 setGameData={setGameData}
                 size={9}
-                setMenuVisibility={setMenuVisibility}
+                GameModes={GameModes}
+                gameMode={gameMode}
+                setGameMode={setGameMode}
+                setGlobalNotification={setGlobalNotification}
+                setIsGlobalError={setIsGlobalError}
               />;
       case GameModes.Sudoku16x16Casual:
         return <SudokuCasual
+                user={user}
+                setUser={setUser}
+                forcedLogin={forcedLogin}
+                setForcedLogin={setForcedLogin}
+                setReturnAfterLogin={setReturnAfterLogin}
+                newUser={newUser}
+                setNewUser={setNewUser}
                 gameData={gameData}
                 setGameData={setGameData}
                 size={16}
-                setMenuVisibility={setMenuVisibility}
+                GameModes={GameModes}
+                gameMode={gameMode}
+                setGameMode={setGameMode}
+                setGlobalNotification={setGlobalNotification}
+                setIsGlobalError={setIsGlobalError}
               />;
       case GameModes.Account:
         return <Account
                 user={user}
                 setUser={setUser}
+                setGameMode={setGameMode}
+                returnAfterLogin={returnAfterLogin}
+                setReturnAfterLogin={setReturnAfterLogin}
                 newUser={newUser}
                 setNewUser={setNewUser}
                 forcedLogin={forcedLogin}
                 setForcedLogin={setForcedLogin}
                 setUserFromSession={setUserFromSession}
+                setGlobalNotification={setGlobalNotification}
+                setIsGlobalError={setIsGlobalError}
               />; 
       default:
         return <SudokuHome 
@@ -160,6 +204,7 @@ function App() {
 
       {/* Render the appropriate Gamemode/View page */}
       {renderGameMode(gameMode)}
+      <Notification message={globalNotification} isError={isGlobalError} />
     </div>
   );
 }

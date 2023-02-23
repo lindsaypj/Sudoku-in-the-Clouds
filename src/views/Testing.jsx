@@ -148,7 +148,6 @@ function Testing({ gameData, setGameData, setMenuVisibility }) {
                 <div className="col-xl-2 col-lg-3 col-md-4 col-12">
                     {/* Configurator for adjusting board parameters */}
                     <TestConfigurator
-                        setGameData={setGameData}
                         setNumBoards={handleNumBoardsChange}
                         numBoards={numBoards}
                         setBoardSize={handleSizeChange}

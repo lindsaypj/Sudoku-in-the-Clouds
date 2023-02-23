@@ -9,7 +9,8 @@ import EditForm from "../components/forms/EditForm.jsx";
 import DeleteConfirmation from "../components/menu/DeleteConfirmation.jsx";
 
 export default function Account(
-    { user, setUser, newUser, setNewUser, forcedLogin, setForcedLogin, setUserFromSession }) {
+    { user, setUser, newUser, setNewUser, forcedLogin, setForcedLogin, setUserFromSession,
+        setGlobalNotification, setIsGlobalError, returnAfterLogin, setReturnAfterLogin, setGameMode }) {
     
     // Form states
     const [editSettings, setEditSettings] = useState(false);
@@ -58,7 +59,13 @@ export default function Account(
         // Check for newUser flag (create acconut clicked)
         if (newUser === true) {
             // Render create account form
-            return <NewUserForm setUser={setUser} setNewUser={setNewUser} />
+            return <NewUserForm 
+                        setUser={setUser}
+                        setNewUser={setNewUser}
+                        returnAfterLogin={returnAfterLogin}
+                        setReturnAfterLogin={setReturnAfterLogin}
+                        setGameMode={setGameMode}
+                    />
         }
         // Render login form
         return <Login
@@ -66,6 +73,9 @@ export default function Account(
                     setNewUser={setNewUser}
                     forcedLogin={forcedLogin}
                     setForcedLogin={setForcedLogin}
+                    returnAfterLogin={returnAfterLogin}
+                    setReturnAfterLogin={setReturnAfterLogin}
+                    setGameMode={setGameMode}
                 />;
     }
 

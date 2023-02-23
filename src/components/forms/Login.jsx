@@ -7,6 +7,7 @@ export default function Login(props) {
     const [errorMessage, setErrorMessage] = useState("");
 
     // Attempt to login
+    // GET @ /sudoku/users/username
     function loginAttempt(event) {
         // Prevent reload
         event.preventDefault();
@@ -39,12 +40,17 @@ export default function Login(props) {
                 }
             }
         })
-        .then(function (user) {
-            if (user !== null && user !== undefined) {
-                props.setUser(user);
+        .then(function (loggedInUser) {
+            if (loggedInUser !== null && loggedInUser !== undefined) {
+                props.setUser(loggedInUser);
                 props.setNewUser(false);
                 props.setForcedLogin(false);
-                sessionStorage.setItem('user', JSON.stringify(user));
+                sessionStorage.setItem('user', JSON.stringify(loggedInUser));
+
+                if (props.returnAfterLogin !== undefined && props.returnAfterLogin !== null && props.returnAfterLogin !== "") {
+                    props.setGameMode(props.returnAfterLogin);
+                    props.setReturnAfterLogin();
+                }
             }
         })
         .catch((error) => {

@@ -12,6 +12,8 @@ export class GameData {
         };
 
         this.casual = {
+            updateWinPostLogin: false,
+            savedIsComplete: false,
             saveStates: {
                 board4: null,
                 board9: null,

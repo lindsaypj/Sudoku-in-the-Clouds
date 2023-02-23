@@ -3,7 +3,7 @@ import React, { useState, useReducer } from "react";
 import ShowNumBtn from "../buttons/ShowNumBtn";
 import HideNumBtn from "../buttons/HideNumBtn";
 
-export default function NewUserForm({ setUser, setNewUser }) {
+export default function NewUserForm({ setUser, setNewUser, returnAfterLogin, setReturnAfterLogin, setGameMode }) {
     // Form fields
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
@@ -17,6 +17,7 @@ export default function NewUserForm({ setUser, setNewUser }) {
 
 
     // Function to handle the form submition
+    // POST @ /sudoku/users/username
     function handleNewUser(event) {
         // Don't reload
         event.preventDefault();
@@ -59,6 +60,11 @@ export default function NewUserForm({ setUser, setNewUser }) {
                     
                     // Store User in Session
                     sessionStorage.setItem('user', JSON.stringify(user));
+
+                    if (returnAfterLogin !== undefined && returnAfterLogin !== null && returnAfterLogin !== "") {
+                        setGameMode(returnAfterLogin);
+                        setReturnAfterLogin();
+                    }
                 }
             })
             // Render error if no other error detected
