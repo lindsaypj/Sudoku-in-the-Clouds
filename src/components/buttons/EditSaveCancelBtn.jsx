@@ -37,7 +37,7 @@ export default function EditSaveCancelBtn({ editing, setEditing, handleSave, han
                 <button
                     type="button"
                     className={"btn btn-secondary mx-2"+styles}
-                    onClick={() => {handleCancel()}}
+                    onClick={() => {handleCancel(setEditing)}}
                 >Cancel</button>
             </div>
         );

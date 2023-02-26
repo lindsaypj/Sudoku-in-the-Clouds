@@ -1,26 +1,50 @@
+// React Imoorts
 import React, { useState, useEffect } from "react";
+
+// Component imports
 import EditSaveCancelBtn from "../components/buttons/EditSaveCancelBtn.jsx";
 import ColorPreference from "../components/account/ColorPreference.jsx";
 import Login from "../components/forms/Login.jsx";
 import NewUserForm from "../components/forms/NewUserForm.jsx";
 import BoolSetting from "../components/account/BoolSetting.jsx";
-
 import EditForm from "../components/forms/EditForm.jsx";
 import DeleteConfirmation from "../components/menu/DeleteConfirmation.jsx";
+
+// Class imports
+import { GameColor } from "../classes/GameColor.js";
 
 export default function Account(
     { user, setUser, newUser, setNewUser, forcedLogin, setForcedLogin, setUserFromSession,
         setGlobalNotification, setIsGlobalError, returnAfterLogin, setReturnAfterLogin, setGameMode }) {
     
+    ////    INITIALIZATION    ////
+
     // Form states
     const [editSettings, setEditSettings] = useState(false);
+    const [editPreferences, setEditPreferences] = useState(false);
 
     // Account data states
     let initialShowConflits;
+    let initialPageBG;
+    let initialCellBG;
+    let initialInfoText;
+    let initialCellText;
+    let initialBoardBorder;
     if (user !== undefined && user !== null) {
         initialShowConflits = user.settings.showConflicts;
+        initialPageBG = new GameColor(user.preferences.pageBackgroundColor);
+        initialCellBG = new GameColor(user.preferences.cellBackgroundColor);
+        initialInfoText = new GameColor(user.preferences.infoTextColor);
+        initialCellText = new GameColor(user.preferences.cellTextColor);
+        initialBoardBorder = new GameColor(user.preferences.boardBorderColor);
     }
     const [showConflicts, setShowConflicts] = useState(initialShowConflits);
+    const [pageBGColor, setPageBGColor] = useState(initialPageBG);
+    const [cellBGColor, setCellBGColor] = useState(initialCellBG);
+    const [infoTextColor, setInfoTextColor] = useState(initialInfoText);
+    const [cellTextColor, setCellTextColor] = useState(initialCellText);
+    const [boardBorderColor, setBoardBorderColor] = useState(initialBoardBorder);
+
     const [tempUser, setTempUser] = useState();
     const [deleteConfim, setDeleteConfim] = useState(false);
     const [deleteUser, setDeleteUser] = useState(false);
@@ -32,7 +56,7 @@ export default function Account(
     // Update Account data on user update
     useEffect(() => {
         if (user !== undefined && user !== null) {
-            setShowConflicts(user.settings.showConflicts);
+            updateUserData(user);
         }
     }, [user]);
 
@@ -45,11 +69,26 @@ export default function Account(
                 setEditSettings(true);
                 handleFormSave();
             }
+            else if (editPreferences === true) {
+                setUser(tempUser);
+                setTempUser();
+                setEditPreferences(true);
+                handleFormSave();
+            }
         }
         else if (deleteUser === true) {
             handleDeleteUser();
         }
     }, [forcedLogin]);
+
+    function updateUserData(user) {
+        setShowConflicts(user.settings.showConflicts);
+        setPageBGColor(new GameColor(user.preferences.pageBackgroundColor));
+        setCellBGColor(new GameColor(user.preferences.cellBackgroundColor));
+        setInfoTextColor(new GameColor(user.preferences.infoTextColor));
+        setCellTextColor(new GameColor(user.preferences.cellTextColor));
+        setBoardBorderColor(new GameColor(user.preferences.boardBorderColor));
+    }
 
 
     ////    COMPONENT ROUTING LOGIC    ////
@@ -94,6 +133,11 @@ export default function Account(
         if (valid) {
             // Update user object with form data
             user.settings.showConflicts = showConflicts;
+            user.preferences.pageBackgroundColor = pageBGColor;
+            user.preferences.cellBackgroundColor = cellBGColor;
+            user.preferences.infoTextColor = infoTextColor;
+            user.preferences.cellTextColor = cellTextColor;
+            user.preferences.boardBorderColor = boardBorderColor;
 
             const updateURI = "http://localhost:8080/sudoku/users/"+user.username;
             const params = {
@@ -127,10 +171,11 @@ export default function Account(
                     // Update Account state with User data from response
                     if (updatedUser !== null && updatedUser !== undefined) {
                         setUser(updatedUser);
-                        sessionStorage.setItem('user', JSON.stringify(user));
+                        sessionStorage.setItem('user', JSON.stringify(updatedUser));
 
-                        setShowConflicts(updatedUser.settings.showConflicts);
+                        updateUserData(updatedUser);
                         setEditSettings(false);
+                        setEditPreferences(false);
                     }
                 })
                 .catch((response) => {
@@ -164,6 +209,7 @@ export default function Account(
                     setUser();
                     setTempUser();
                     setEditSettings(false);
+                    setEditPreferences(false);
                     setForcedLogin(false);
                     setDeleteUser(false);
                 }
@@ -216,11 +262,16 @@ export default function Account(
         return colors.colors;
     }
 
+    // Function to parse the color information from an object
+    function getColor(colorObject) {
+
+    }
+
     // Form submition canceled, restore user data
-    function handleFormCancel() {
+    function handleFormCancel(formEditCallback) {
         setUserFromSession(); // Restore user data
         setFormErrorMessage(""); // Clear error messages
-        setEditSettings(false); // Switch from editing to viewing
+        formEditCallback(false); // Switch from editing to viewing
     }
 
 
@@ -290,26 +341,58 @@ export default function Account(
             {/* Preferences */}
             <div className="row justify-content-center mb-5">
                 <div className="col-11 col-md-8">
-                    {/* Header */}
-                    <div className="row">
-                        <div className="col-12">
-                            <h3 className="d-inline pe-3">Preferences</h3>
-                            <EditSaveCancelBtn disabled={true} />
-                            <hr></hr>
+                    <EditForm editing={editPreferences} errorMessage={formErrorMessage}>
+                        {/* Header */}
+                        <div className="row">
+                            <div className="col-12">
+                                <h3 className="d-inline pe-3">Preferences</h3>
+                                <EditSaveCancelBtn 
+                                    editing={editPreferences}
+                                    setEditing={setEditPreferences}
+                                    handleSave={handleFormSave}
+                                    handleCancel={handleFormCancel}
+                                    styles={" align-top shadow-sm float-end"}
+                                />
+                                <hr></hr>
+                            </div>
                         </div>
-                    </div>
-                    
-                    {/* Colors */}
-                    <div className="row">
-                        <div className="col-12">
-                            {getColorPreferences().map((color, colorIndex) => {
-                                    return (
-                                        <ColorPreference key={colorIndex} colorObject={color} colorName={color.name} />
-                                    );
-                                })
-                            }
+                        
+                        {/* Colors */}
+                        <div className="row">
+                            <div className="col-12">
+                                <ColorPreference
+                                    colorObject={pageBGColor}
+                                    setColor={setPageBGColor}
+                                    colorName={"Page Background"}
+                                    editing={editPreferences}
+                                />
+                                <ColorPreference
+                                    colorObject={cellBGColor}
+                                    setColor={setCellBGColor}
+                                    colorName={"Cell Background"}
+                                    editing={editPreferences}
+                                />
+                                <ColorPreference
+                                    colorObject={infoTextColor}
+                                    setColor={setInfoTextColor}
+                                    colorName={"Info Text"}
+                                    editing={editPreferences}
+                                />
+                                <ColorPreference
+                                    colorObject={cellTextColor}
+                                    setColor={setCellTextColor}
+                                    colorName={"Cell Text"}
+                                    editing={editPreferences}
+                                />
+                                <ColorPreference
+                                    colorObject={boardBorderColor}
+                                    setColor={setBoardBorderColor}
+                                    colorName={"Board Border"}
+                                    editing={editPreferences}
+                                />
+                            </div>
                         </div>
-                    </div>
+                    </EditForm>
                 </div>
             </div>
 
