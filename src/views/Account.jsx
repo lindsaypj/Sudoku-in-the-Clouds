@@ -115,6 +115,7 @@ export default function Account(
                     returnAfterLogin={returnAfterLogin}
                     setReturnAfterLogin={setReturnAfterLogin}
                     setGameMode={setGameMode}
+                    updateUserData={updateUserData}
                 />;
     }
 
@@ -225,47 +226,11 @@ export default function Account(
                 else {
                     setDeleteErrorMessage("An error occured when trying to delete. Try again.")
                 }
-                
-            })
+            });
     }
 
 
     ////    RENDERING LOGIC    ////
-
-    // Function to get only the color properties of the user object
-    function getColorPreferences() {
-        const preferences = Object.keys(user.preferences);
-        let colors = {
-            "colors": [],
-            "names": []
-        };
-
-        // Loop over prefernces and find colors
-        for (let i = 0; i < preferences.length; i++) {
-            if (preferences[i].includes("Color")) {
-                // Store color object
-                colors.colors.push(user.preferences[preferences[i]]);
-                // Store property name
-                colors.names.push(
-                    preferences[i].charAt(0).toUpperCase() + // Capitalize
-                    preferences[i].slice(1)
-                    .replace("Color", "")       // Remove color
-                    .replace(/([A-Z])/g, ' $1') // Add space between words
-                );
-            }
-        }
-
-        // Add Combine arrays
-        for (let i = 0; i < colors.colors.length; i++) {
-            colors.colors[i].name = colors.names[i];
-        }
-        return colors.colors;
-    }
-
-    // Function to parse the color information from an object
-    function getColor(colorObject) {
-
-    }
 
     // Form submition canceled, restore user data
     function handleFormCancel(formEditCallback) {

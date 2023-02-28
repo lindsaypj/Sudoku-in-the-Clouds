@@ -46,6 +46,7 @@ export default function Login(props) {
                 props.setNewUser(false);
                 props.setForcedLogin(false);
                 sessionStorage.setItem('user', JSON.stringify(loggedInUser));
+                props.updateUserData(loggedInUser);
 
                 if (props.returnAfterLogin !== undefined && props.returnAfterLogin !== null && props.returnAfterLogin !== "") {
                     props.setGameMode(props.returnAfterLogin);
