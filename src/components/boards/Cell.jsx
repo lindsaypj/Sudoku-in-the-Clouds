@@ -1,5 +1,5 @@
 import React, { useReducer, useState } from 'react';
-import { useEffect } from 'react';
+import { useEffect, useLayoutEffect } from 'react';
 
 import '../.././styles/css/cell.css'
 
@@ -14,7 +14,7 @@ function Cell({ cellIndex, size, value, cellUpdateCallback, boardIndex, textVisi
     const [inputValue, setInputValue] = useState("");
     const [displayValue, setDisplayValue] = useState(value);
 
-    useEffect(() => {
+    useLayoutEffect(() => {
         setDisplayValue(value);
         setCellBGColor();
         setCellTextColor();
@@ -38,9 +38,9 @@ function Cell({ cellIndex, size, value, cellUpdateCallback, boardIndex, textVisi
         }
         else if (textVisibility) {
             if (disabled) {
-                return COLORS[14];
+                return "disabled";
             }
-            return COLORS[0];
+            return "default";
         }
         return COLORS[displayValue];
     }, value);
@@ -78,7 +78,7 @@ function Cell({ cellIndex, size, value, cellUpdateCallback, boardIndex, textVisi
     }
 
     // Update Cell Color/text visibility
-    useEffect(() => {
+    useLayoutEffect(() => {
         setCellBGColor();
         setCellTextColor();
     }, [textVisibility, displayValue]);

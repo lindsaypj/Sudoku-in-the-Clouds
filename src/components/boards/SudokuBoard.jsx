@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useReducer } from "react";
+import React, { useState, useLayoutEffect, useReducer } from "react";
 import Cell from "./Cell.jsx";
 
 import '../.././styles/css/board.css';
@@ -55,7 +55,7 @@ function SudokuBoard({ size, initialBoard, saveState, handleBoardUpdate, boardIn
     ////    BOARD INITIALIZATION    ////
 
     // Check if session data exists
-    useEffect(() => {
+    useLayoutEffect(() => {
         if (saveState !== null && saveState !== undefined && saveState.length === cellCount) {
             setCells(saveState);
         }
@@ -73,7 +73,7 @@ function SudokuBoard({ size, initialBoard, saveState, handleBoardUpdate, boardIn
     ////    RENDER BOARD    ////
 
     // Generate Rows and cols to map through
-    useEffect(() => {
+    useLayoutEffect(() => {
         setCellRows();
     }, [size]);
     

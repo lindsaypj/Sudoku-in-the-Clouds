@@ -6,7 +6,8 @@ import Loading from "../components/Loading.jsx";
 const FETCH_FAILURE_MSG = "Failed to fetch";
 
 function SudokuCasual({ user, setUser, forcedLogin, setForcedLogin, setReturnAfterLogin, newUser,
-     setNewUser, gameData, setGameData, size, GameModes, gameMode, setGameMode, setGlobalNotification, setIsGlobalError }) {
+     setNewUser, gameData, setGameData, size, GameModes, gameMode, setGameMode, setGlobalNotification, 
+     setIsGlobalError, renderPreferences }) {
 
     ////    INITIALIZATION    ////
 
@@ -420,9 +421,11 @@ function SudokuCasual({ user, setUser, forcedLogin, setForcedLogin, setReturnAft
                 );
             }
         }
+        // Render Loading...
         else if (isLoading === true) {
             return <Loading />
         }
+        // Render Game Board
         else if (isLoading === false && initialBoard !== undefined && initialBoard !== null) {
             return (
                 <div className="container-fluid">
@@ -434,6 +437,7 @@ function SudokuCasual({ user, setUser, forcedLogin, setForcedLogin, setReturnAft
                                 boardIndex={size}
                                 saveState={board}
                                 handleBoardUpdate={handleBoardUpdate}
+                                renderPreferences={renderPreferences}
                             />
                             <span className="d-block text-danger">{errorMessage}</span>
                         </div>

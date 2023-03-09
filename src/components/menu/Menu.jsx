@@ -30,8 +30,7 @@ function Menu({page, handleMenuPageChange, MenuPages, GameModes, setGameMode, cl
                 return (
                     <div>
                         <div className="text-center">
-                            <h5 className="m-0">Sudoku Casual</h5>
-                            <hr className="mt-1 mx-5"></hr>
+                            <h5 className="m-0 mb-2">Sudoku Casual</h5>
                     
                             <div className='d-inline text-center p-1'>
                                 <Button onClick={() => {handleChangeGameMode(GameModes.Sudoku4x4Casual)}} >4 x 4</Button>
@@ -44,8 +43,7 @@ function Menu({page, handleMenuPageChange, MenuPages, GameModes, setGameMode, cl
                             </div>
                         </div>
                         <div className='d-block text-center p-1'>
-                            <h5 className="m-0 mt-3">Testing</h5>
-                            <hr className="mt-1 mx-5"></hr>
+                            <h5 className="m-0 mt-3 mb-2">Testing</h5>
                             <Button onClick={() => {handleChangeGameMode(GameModes.Testing)}} >Sudoku</Button>
                         </div>
                     </div>

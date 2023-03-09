@@ -18,24 +18,24 @@ function TestConfigurator(props) {
             
             {/* BOARD SIZE */}
             <div className={"d-inline-block text-start mt-2 size-" + props.boardSize + "-selected"}>
-                <p className="bg-light m-1 mb-0 text-start">Board Size:</p>
+                <p className="m-1 mb-0 text-start">Board Size:</p>
                 <button 
-                    className="btn m-1 d-inline btn-theme-light shadow-sm fw-bold" 
+                    className="btn m-1 d-inline btn-secondary shadow-sm fw-bold" 
                     onClick={() => props.setBoardSize(4)}
                 >4x4</button>
                 <button 
-                    className="btn m-1 d-inline btn-theme-light shadow-sm fw-bold" 
+                    className="btn m-1 d-inline btn-secondary shadow-sm fw-bold" 
                     onClick={() => props.setBoardSize(9)}
                 >9x9</button>
                 <button 
-                    className="btn m-1 d-inline btn-theme-light shadow-sm fw-bold" 
+                    className="btn m-1 d-inline btn-secondary shadow-sm fw-bold" 
                     onClick={() => props.setBoardSize(16)}
                 >16x16</button>
             </div>
 
             {/* HIDE/SHOW NUMBERS */}
             <div className="mt-3 d-inline-block">
-                <p className="bg-light m-1 mb-0 text-start">Cell Values:</p>
+                <p className="m-1 mb-0 text-start">Cell Values:</p>
                 <div className="d-inline me-2">
                     <ShowNumBtn 
                         theme={"btn-theme-light"} 
@@ -54,8 +54,8 @@ function TestConfigurator(props) {
             </div>
 
             {/* NUMBER OF BOARDS */}
-            <div className="bg-light m-1 mt-3 d-inline-block">
-                <p className="bg-light mb-0">Number Of Boards: {props.numBoards}</p>
+            <div className="m-1 mt-3 d-inline-block">
+                <p className="mb-0">Number Of Boards: {props.numBoards}</p>
                 <Form.Range
                     type="range"
                     className="form-range min-w-200"

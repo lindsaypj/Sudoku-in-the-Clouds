@@ -62,7 +62,7 @@ export default function Login(props) {
     }
 
     return (
-        <div className="bg-light text-center mt-5 container-fluid">
+        <div className="text-center mt-5 container-fluid">
             <div className="row">
                 {/* LOGIN FORM */}
                 <div className="col-12 col-md-1"></div>

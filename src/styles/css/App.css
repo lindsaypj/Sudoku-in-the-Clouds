@@ -6,3 +6,6 @@
   z-index: 1000;
 }
 
+.btn {
+  border: none !important;
+}

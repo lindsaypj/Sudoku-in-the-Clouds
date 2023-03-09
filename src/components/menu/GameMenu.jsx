@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
-import { useEffect } from 'react';
+import { useLayoutEffect } from 'react';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import Menu from './Menu.jsx';
 
-import {GameData} from "../../classes/GameData.js";
+import { GameData } from "../../classes/GameData.js";
 
 // Menu pages
 const MenuPages = {
@@ -18,10 +18,10 @@ function GameMenu(props) {
     const [menuTitle, setMenuTitle] = useState("SUDOKU MENU");
 
     // Handle showing the menu on request
-    useEffect(() => {
+    useLayoutEffect(() => {
         handleMenuPageChange(props.page);
         setShow(props.show);
-    }, [props.show]);
+    }, [props, props.show]);
 
     // Close the menu and update App state
     const handleClose = () => {
@@ -60,7 +60,7 @@ function GameMenu(props) {
         if (props.user !== null && props.user !== undefined) {
             return (
                 <button 
-                    className="btn bg-secondary mx-3 text-white shadow-sm float-end"
+                    className="btn btn-secondary mx-3 shadow-sm float-end"
                     onClick={() => {
                         sessionStorage.clear();
                         props.setUser(null);
@@ -74,7 +74,7 @@ function GameMenu(props) {
         else {
             return (
                 <button 
-                    className="btn bg-secondary mx-3 text-white shadow-sm float-end"
+                    className="btn btn-secondary mx-3 shadow-sm float-end"
                     onClick={() => {
                         props.setNewUser(false);
                         sessionStorage.setItem('gameMode', "account");
@@ -89,9 +89,9 @@ function GameMenu(props) {
     function getNavbar() {
         if (props.gameMode) {
             return (
-                <div className='d-block p-2 px-4 sticky-top bg-white z-top shadow-sm'>
+                <div className='d-block p-2 px-4 sticky-top z-top shadow-sm theme-background'>
                     <button 
-                        className="btn bg-secondary mx-3 text-white shadow-sm"
+                        className="btn btn-secondary mx-3 shadow-sm"
                         onClick={() => {
                             props.setShow(true);
                             props.setInitialMenuPage(MenuPages.Main);
@@ -108,24 +108,24 @@ function GameMenu(props) {
         if (menuPage !== MenuPages.Main) {
            return (
                 <>
-                <Button variant="secondary" onClick={handleBack}>
+                <button className='btn btn-secondary' onClick={handleBack}>
                     Back
-                </Button>
-                <Button variant="secondary" onClick={handleClose}>
+                </button>
+                <button className='btn btn-secondary' onClick={handleClose}>
                     Close
-                </Button>
+                </button>
                 </>
             ); 
         }
         else {
             return (
-                <Button variant="secondary" onClick={handleClose}>
+                <Button className='btn btn-secondary' onClick={handleClose}>
                     Close
                 </Button>
             );
         }
     }
-
+    
     return (
         <>
         {/* Only render navbar when not on homepage */}
@@ -137,7 +137,7 @@ function GameMenu(props) {
             onHide={handleClose}
             centered
         >
-            <Modal.Header>
+            <Modal.Header className={'theme-background'}>
                 <Modal.Title className='mx-auto'>{menuTitle}</Modal.Title>
             </Modal.Header>
             <Modal.Body>
@@ -148,9 +148,10 @@ function GameMenu(props) {
                     GameModes={props.GameModes}
                     setGameMode={props.setGameMode}
                     closeMenu={handleClose}
+                    className={'theme-background'}
                 />
             </Modal.Body>
-            <Modal.Footer className='justify-content-center'>
+            <Modal.Footer className='justify-content-center theme-background'>
                 {getFooterContent()}
             </Modal.Footer>
         </Modal>

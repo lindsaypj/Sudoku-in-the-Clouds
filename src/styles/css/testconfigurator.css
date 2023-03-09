@@ -29,11 +29,11 @@
 
 /* Highlight Selected boardsize button */
 .size-4-selected :nth-child(2) {
-    background-color: rgb(208,208,208) !important;
+    opacity: 60% !important;
 }
 .size-9-selected :nth-child(3) {
-    background-color: rgb(208,208,208) !important;
+    opacity: 60% !important;
 }
 .size-16-selected :nth-child(4) {
-    background-color: rgb(208,208,208) !important;
+    opacity: 60% !important;
 }

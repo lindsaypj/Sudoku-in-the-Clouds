@@ -95,7 +95,7 @@ function SudokuHome(props) {
             <div className="home-example row">
                 <div className="col-12 text-center">
                     <div className="d-inline-block shadow">
-                        <SudokuBoard size={9} initialBoard={exampleBoard} boardIndex={2} />
+                        <SudokuBoard size={9} initialBoard={exampleBoard} boardIndex={2} renderPreferences={props.renderPreferences} />
                     </div>
                 </div>
             </div>

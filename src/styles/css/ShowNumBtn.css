@@ -26,8 +26,8 @@
 }
 
 .selected-true {
-    background-color: rgb(208,208,208) !important;
+    opacity: 60% !important;
 }
 .selected-false {
-    background-color: white !important;
+    opacity: 100% !important;
 }

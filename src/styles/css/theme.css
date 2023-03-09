@@ -1,0 +1,33 @@
+/*** ===== THEMES ===== ***/
+
+/** DEFAULT STYLES **/
+/* 
+    NOTE: Styles are dynamically updated with user selected preferences.
+    That means that this file will not always refelct the styles present
+    on the page. Use debug console in the browser to see active styles.
+/*
+
+/* Background Color (RULE #0) */
+html, body, .App, .modal-content, .theme-background {
+    background-color: rgb(248,249,250);
+}
+
+/* Info Text Color (RULE #1) */
+.modal-content, body {
+    color: black !important;
+}
+
+/* Cell Background Color (RULE #2) */
+.board, .btn-secondary, .btn-primary, .selected-true, .selected-false {
+    background: rgb(240, 240, 240);
+}
+
+/* Cell Text Color (RULE #3) */
+.board, .btn-secondary, .btn-primary {
+    color: black;
+}
+
+/* Board Border Color (RULE #4) */
+.modal-header, .modal-footer, .board, .cell-row, .cellContainer, .cell, .cellDisplay {
+    border-color: black !important;
+}

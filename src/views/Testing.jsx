@@ -8,7 +8,7 @@ import ".././styles/css/testing.css";
 /**
  * The Testing view is designed for testing funcitonality across board sizes,
  * configuring patterns across
- * @returns Testing view component
+ * @returns Testing view component  
  */
 function Testing({ gameData, setGameData, setMenuVisibility }) {
     let initialNumBoards;

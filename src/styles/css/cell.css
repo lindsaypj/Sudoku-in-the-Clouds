@@ -14,8 +14,7 @@ input.cell {
     margin: auto;
 
     font-weight: 700;
-    color: white;
-    
+        
     z-index: 201;
     pointer-events: none;
 }
@@ -198,4 +197,7 @@ input.cell:focus {
 }
 .cell-text-transparent {
     color: transparent;
+}
+.cell-text-disabled {
+    opacity: 45%;
 }

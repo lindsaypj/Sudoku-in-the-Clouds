@@ -1,5 +1,10 @@
 // React Imports
-import React, { useState, useEffect } from 'react';
+import React, { useState, useLayoutEffect, useEffect, useCallback } from 'react';
+
+// Style imports
+import './styles/css/theme.css';
+import './styles/css/App.css';
+import './styles/css/font-roboto.css';
 
 // View page Imports
 import Testing from './views/Testing';
@@ -12,11 +17,8 @@ import GameMenu from './components/menu/GameMenu';
 import Notification from './components/Notification';
 
 // Class imports
-import {GameData} from "./classes/GameData.js";
-
-// Style imports
-import './styles/css/App.css';
-import './styles/css/font-roboto.css';
+import { GameData } from "./classes/GameData";
+import { GameColor } from './classes/GameColor';
 
 
 // Define game modes
@@ -185,8 +187,46 @@ function App() {
     }
   }
 
+  ////    RENDER USER PREFERENCES    ////
+
+  useLayoutEffect(() => renderPreferences(),[user]);
+
+  const renderPreferences = useCallback(() => {
+    // Define default Styles
+    let pageBGColor = "rgb(228,229,230)";
+    let cellBGColor = "rgb(255,255,255)";
+    let infoTextColor = "rgb(0,0,0)";
+    let cellTextColor = "rgb(0,0,0)";
+    let boardBorderColor = "rgb(0,0,0)";
+    
+    // Redefine styles based on user preferences
+    if (user !== undefined && user !== null) {
+      pageBGColor = new GameColor(user.preferences.pageBackgroundColor).toHex();
+      cellBGColor = new GameColor(user.preferences.cellBackgroundColor).toHex();
+      infoTextColor = new GameColor(user.preferences.infoTextColor).toHex();
+      cellTextColor = new GameColor(user.preferences.cellTextColor).toHex();
+      boardBorderColor = new GameColor(user.preferences.boardBorderColor).toHex();
+    }
+
+    // Implement styling
+  
+    // Getting the stylesheet
+    const stylesheet = document.styleSheets[1];
+    
+    // Background Color (RULE 0)
+    stylesheet.cssRules[0].style.setProperty('background', pageBGColor, "important");
+    // Info Text Color (RULE 1)
+    stylesheet.cssRules[1].style.setProperty('color', infoTextColor, "important");
+    // Cell Background Color (RULE 2)
+    stylesheet.cssRules[2].style.setProperty('background', cellBGColor, "important");
+    // Cell Text Color (RULE 3)
+    stylesheet.cssRules[3].style.setProperty('color', cellTextColor, "important");
+    // Board Border Color (RULE 4)
+    stylesheet.cssRules[4].style.setProperty('border-color', boardBorderColor, "important");
+  }, [user]);
+
   return (
-    <div className="App bg-light">
+    <div className="App">
       {/* Menu for navigating game modes + settings */}
       <GameMenu 
         page={initialMenuPage}
