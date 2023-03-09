@@ -9,6 +9,7 @@ import NewUserForm from "../components/forms/NewUserForm.jsx";
 import BoolSetting from "../components/account/BoolSetting.jsx";
 import EditForm from "../components/forms/EditForm.jsx";
 import DeleteConfirmation from "../components/menu/DeleteConfirmation.jsx";
+import ThemeSelector from "../components/account/ThemeSelector.jsx";
 
 // Class imports
 import { GameColor } from "../classes/GameColor.js";
@@ -305,7 +306,7 @@ export default function Account(
 
             {/* Preferences */}
             <div className="row justify-content-center mb-5">
-                <div className="col-11 col-md-8">
+                <div className="col-11 col-xl-8">
                     <EditForm editing={editPreferences} errorMessage={formErrorMessage}>
                         {/* Header */}
                         <div className="row">
@@ -324,7 +325,8 @@ export default function Account(
                         
                         {/* Colors */}
                         <div className="row">
-                            <div className="col-12">
+                            {/* Manual Color Selection */}
+                            <div className="col-12 col-md-6 col-lg-4">
                                 <ColorPreference
                                     colorObject={pageBGColor}
                                     setColor={setPageBGColor}
@@ -355,6 +357,11 @@ export default function Account(
                                     colorName={"Board Border"}
                                     editing={editPreferences}
                                 />
+                            </div>
+
+                            {/* Color Theme Selection */}
+                            <div className="col-12 col-md-6 col-lg-8">
+                                <ThemeSelector edit={editPreferences} />
                             </div>
                         </div>
                     </EditForm>

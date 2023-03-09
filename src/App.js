@@ -193,7 +193,7 @@ function App() {
 
   const renderPreferences = useCallback(() => {
     // Define default Styles
-    let pageBGColor = "rgb(228,229,230)";
+    let pageBGColor = "rgb(248,249,250)";
     let cellBGColor = "rgb(255,255,255)";
     let infoTextColor = "rgb(0,0,0)";
     let cellTextColor = "rgb(0,0,0)";
@@ -214,11 +214,11 @@ function App() {
     const stylesheet = document.styleSheets[1];
     
     // Background Color (RULE 0)
-    stylesheet.cssRules[0].style.setProperty('background', pageBGColor, "important");
+    stylesheet.cssRules[0].style.setProperty('background-color', pageBGColor, "important");
     // Info Text Color (RULE 1)
     stylesheet.cssRules[1].style.setProperty('color', infoTextColor, "important");
     // Cell Background Color (RULE 2)
-    stylesheet.cssRules[2].style.setProperty('background', cellBGColor, "important");
+    stylesheet.cssRules[2].style.setProperty('background-color', cellBGColor, "important");
     // Cell Text Color (RULE 3)
     stylesheet.cssRules[3].style.setProperty('color', cellTextColor, "important");
     // Board Border Color (RULE 4)

@@ -108,10 +108,10 @@ function GameMenu(props) {
         if (menuPage !== MenuPages.Main) {
            return (
                 <>
-                <button className='btn btn-secondary' onClick={handleBack}>
+                <button className='btn btn-secondary shadow-sm' onClick={handleBack}>
                     Back
                 </button>
-                <button className='btn btn-secondary' onClick={handleClose}>
+                <button className='btn btn-secondary shadow-sm' onClick={handleClose}>
                     Close
                 </button>
                 </>
@@ -119,7 +119,7 @@ function GameMenu(props) {
         }
         else {
             return (
-                <Button className='btn btn-secondary' onClick={handleClose}>
+                <Button className='btn btn-secondary shadow-sm' onClick={handleClose}>
                     Close
                 </Button>
             );

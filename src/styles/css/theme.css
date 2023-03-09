@@ -18,7 +18,7 @@ html, body, .App, .modal-content, .theme-background {
 }
 
 /* Cell Background Color (RULE #2) */
-.board, .btn-secondary, .btn-primary, .selected-true, .selected-false {
+.board, .btn-secondary, .btn-primary, .selected-true, .selected-false, .theme-secondary {
     background: rgb(240, 240, 240);
 }
 

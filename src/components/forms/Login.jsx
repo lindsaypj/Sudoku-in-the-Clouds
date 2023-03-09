@@ -94,7 +94,7 @@ export default function Login(props) {
                         
                         <div>
                             <span className="d-block text-danger">{errorMessage}</span>
-                            <button type="submit" className="btn mt-3 btn-primary">Login</button>
+                            <button type="submit" className="btn mt-3 btn-primary text-white bg-primary">Login</button>
                         </div>
                     </form>
                 </div>
@@ -109,7 +109,7 @@ export default function Login(props) {
                             preferences. Sign up today to take your Sudoku skills to the next level!
                         </p>
                         <button 
-                            className="btn btn-primary shadow-sm"
+                            className="btn btn-primary text-white bg-primary shadow-sm"
                             onClick={() => props.setNewUser(true)}
                         >Create Account</button>
                     </div>
