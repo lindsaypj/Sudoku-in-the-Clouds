@@ -157,7 +157,7 @@ export default function NewUserForm({ setUser, setNewUser, returnAfterLogin, set
 
                             {/* HIDE/SHOW NUMBERS */}
                             <div className="mt-3 d-inline-block">
-                                <p className="bg-light m-0 text-start">Cell values</p>
+                                <p className="m-0 text-start">Cell values</p>
                                 <div className="d-inline me-2">
                                     <ShowNumBtn 
                                         theme={"btn-theme-light"} 

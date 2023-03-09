@@ -109,7 +109,7 @@ export default function Login(props) {
                             preferences. Sign up today to take your Sudoku skills to the next level!
                         </p>
                         <button 
-                            className="btn btn-primary"
+                            className="btn btn-primary shadow-sm"
                             onClick={() => props.setNewUser(true)}
                         >Create Account</button>
                     </div>
