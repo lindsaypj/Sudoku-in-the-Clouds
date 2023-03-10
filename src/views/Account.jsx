@@ -361,7 +361,14 @@ export default function Account(
 
                             {/* Color Theme Selection */}
                             <div className="col-12 col-md-6 col-lg-8">
-                                <ThemeSelector edit={editPreferences} />
+                                <ThemeSelector
+                                    edit={editPreferences}
+                                    setPageBGColor={setPageBGColor}
+                                    setCellBGColor={setCellBGColor}
+                                    setInfoTextColor={setInfoTextColor}
+                                    setCellTextColor={setCellTextColor}
+                                    setBoardBorderColor={setBoardBorderColor}
+                                />
                             </div>
                         </div>
                     </EditForm>

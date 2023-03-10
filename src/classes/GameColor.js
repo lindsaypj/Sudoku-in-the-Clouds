@@ -14,6 +14,11 @@ export class GameColor {
                 this.blue = parseInt(color.substring(color.lastIndexOf(","), color.lastIndexOf(")")));
             }
         }
+        else if (color instanceof Array) {
+            this.red = color[0];
+            this.green = color[1];
+            this.blue = color[2];
+        }
         else if (color instanceof Object) {
             this.red = color?.red;
             this.green = color?.green;
@@ -43,6 +48,17 @@ export class GameColor {
         }
         if (blue === "0") {
             blue = "00"
+        }
+
+        // Correct length formating
+        if (red.length === 1) {
+            red = "0"+red;
+        }
+        if (green.length === 1) {
+            green = "0"+green;
+        }
+        if (blue.length === 1) {
+            blue = "0"+blue;
         }
 
         return "#"+red+green+blue;
