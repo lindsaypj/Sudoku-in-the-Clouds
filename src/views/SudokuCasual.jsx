@@ -349,7 +349,8 @@ function SudokuCasual({ user, setUser, forcedLogin, setForcedLogin, setReturnAft
                                 <h1>Board Complete!</h1>
 
                                 <p>Would you like to create an account to save your win?</p>
-                                <button 
+                                <button
+                                    className="btn btn-primary shadow-sm m-1"
                                     onClick={() => {
                                         setUpdateWinPostLogin(true);
                                         gameData.casual.updateWinPostLogin = true;
@@ -361,6 +362,7 @@ function SudokuCasual({ user, setUser, forcedLogin, setForcedLogin, setReturnAft
                                     }}
                                 >Login</button>
                                 <button
+                                    className="btn btn-primary shadow-sm m-1"
                                     onClick={() => {
                                         setUpdateWinPostLogin(true);
                                         gameData.casual.updateWinPostLogin = true;
@@ -373,6 +375,7 @@ function SudokuCasual({ user, setUser, forcedLogin, setForcedLogin, setReturnAft
                                 >Create Account</button>
 
                                 <button
+                                    className="btn btn-primary shadow-sm m-1"
                                     onClick={() => {
                                         setComplete(false);
                                         gameData.casual.savedIsComplete = false;
@@ -380,6 +383,7 @@ function SudokuCasual({ user, setUser, forcedLogin, setForcedLogin, setReturnAft
                                     }}
                                 >New Game</button>
                                 <button
+                                    className="btn btn-primary shadow-sm m-1"
                                     onClick={() => {
                                         setComplete(false);
                                         gameData.casual.savedIsComplete = false;
@@ -401,6 +405,7 @@ function SudokuCasual({ user, setUser, forcedLogin, setForcedLogin, setReturnAft
                             <h1>Board Complete!</h1>
         
                             <button
+                                className="btn btn-primary shadow-sm m-1"
                                 onClick={() => {
                                     setComplete(false);
                                     gameData.casual.savedIsComplete = false;
@@ -408,6 +413,7 @@ function SudokuCasual({ user, setUser, forcedLogin, setForcedLogin, setReturnAft
                                 }}
                             >New Game</button>
                             <button
+                                className="btn btn-primary shadow-sm m-1"
                                 onClick={() => {
                                     setComplete(false);
                                     gameData.casual.savedIsComplete = false;
