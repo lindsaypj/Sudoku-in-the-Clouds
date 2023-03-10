@@ -211,18 +211,22 @@ function App() {
     // Implement styling
   
     // Getting the stylesheet
-    const stylesheet = document.styleSheets[1];
+    const stylesheet = document.styleSheets[0];
+    console.log(stylesheet);
     
-    // Background Color (RULE 0)
-    stylesheet.cssRules[0].style.setProperty('background-color', pageBGColor, "important");
-    // Info Text Color (RULE 1)
-    stylesheet.cssRules[1].style.setProperty('color', infoTextColor, "important");
-    // Cell Background Color (RULE 2)
-    stylesheet.cssRules[2].style.setProperty('background-color', cellBGColor, "important");
-    // Cell Text Color (RULE 3)
-    stylesheet.cssRules[3].style.setProperty('color', cellTextColor, "important");
-    // Board Border Color (RULE 4)
-    stylesheet.cssRules[4].style.setProperty('border-color', boardBorderColor, "important");
+    if (stylesheet) {
+      // Background Color (RULE 0)
+      stylesheet.cssRules[0].style.setProperty('background-color', pageBGColor, "important");
+      // Info Text Color (RULE 1)
+      stylesheet.cssRules[1].style.setProperty('color', infoTextColor, "important");
+      // Cell Background Color (RULE 2)
+      stylesheet.cssRules[2].style.setProperty('background-color', cellBGColor, "important");
+      // Cell Text Color (RULE 3)
+      stylesheet.cssRules[3].style.setProperty('color', cellTextColor, "important");
+      // Board Border Color (RULE 4)
+      stylesheet.cssRules[4].style.setProperty('border-color', boardBorderColor, "important");
+    }
+    
   }, [user]);
 
   return (
