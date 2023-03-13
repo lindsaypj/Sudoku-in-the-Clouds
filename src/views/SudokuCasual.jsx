@@ -66,7 +66,7 @@ function SudokuCasual({ user, setUser, forcedLogin, setForcedLogin, setReturnAft
     // Function to get a random board from SudokuAPI
     // Use GET @ http://localhost:8080/sudoku/boards/{size}
     function fetchBoard() {
-        const uri = "http://localhost:8080/sudoku/boards/"+size+"x"+size;
+        const uri = "http://"+window.location.origin+":8080/sudoku/boards/"+size+"x"+size;
         const params = {
             method: "get",
             mode: "cors",
@@ -105,7 +105,7 @@ function SudokuCasual({ user, setUser, forcedLogin, setForcedLogin, setReturnAft
     // Function to post a solved board to the sudokuAPI
     // Use POST @ http://localhost:8080/sudoku/boards/{size}/solved
     function postSolvedBoard(newBoardSize, newBoard) {
-        const uri = "http://localhost:8080/sudoku/boards/"+newBoardSize+"x"+newBoardSize+"/solved";
+        const uri = "http://"+window.location.origin+":8080/sudoku/boards/"+newBoardSize+"x"+newBoardSize+"/solved";
         const params = {
             method: "post",
             mode: "cors",
@@ -173,7 +173,7 @@ function SudokuCasual({ user, setUser, forcedLogin, setForcedLogin, setReturnAft
                 return;
         }
 
-        const updateURI = "http://localhost:8080/sudoku/users/"+user.username;
+        const updateURI = "http://"+window.location.origin+":8080/sudoku/users/"+user.username;
         const params = {
             method: "put",
             mode: "cors",
