@@ -212,7 +212,6 @@ function App() {
   
     // Getting the stylesheet
     const stylesheet = document.styleSheets[0];
-    console.log(stylesheet);
     
     if (stylesheet) {
       // Background Color (RULE 0)
