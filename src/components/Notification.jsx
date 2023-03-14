@@ -32,11 +32,11 @@ export default function Notification({ message, isError }) {
 
     return (
         <ToastContainer className="p-4" position={'bottom-end'}>
-            <Toast onClose={() => setShow(false)} show={show} delay={3000} autohide>
-            <Toast.Header>
+            <Toast className="cell-bg-color" onClose={() => setShow(false)} show={show} delay={3000} autohide>
+            <Toast.Header className="cell-bg-color">
                 <strong className={"me-auto "+titleColor}>{title}</strong>
             </Toast.Header>
-            <Toast.Body>{message}</Toast.Body>
+            <Toast.Body className="cell-bg-color">{message}</Toast.Body>
             </Toast>
         </ToastContainer>
     );

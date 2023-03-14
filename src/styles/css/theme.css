@@ -18,7 +18,7 @@ html, body, .App, .modal-content, .theme-background {
 }
 
 /* Cell Background Color (RULE #2) */
-.board, .btn-secondary, .btn-primary, .selected-true, .selected-false, .theme-secondary {
+.board, .btn-secondary, .btn-primary, .selected-true, .selected-false, .theme-secondary, .cell-bg-color {
     background: rgb(240, 240, 240);
 }
 
@@ -28,7 +28,7 @@ html, body, .App, .modal-content, .theme-background {
 }
 
 /* Board Border Color (RULE #4) */
-.modal-header, .modal-footer, .board, .cell-row, .cellContainer, .cell, .cellDisplay {
+.modal-header, .modal-footer, .board, .cell-row, .cellContainer, .cell, .cellDisplay, .cell-text-color {
     border-color: black !important;
 }
 

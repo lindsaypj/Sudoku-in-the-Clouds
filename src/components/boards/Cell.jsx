@@ -92,7 +92,6 @@ function Cell({ cellIndex, size, value, cellUpdateCallback, boardIndex, textVisi
     // CELL FOCUS/BLUR HANDLERS
     const handleBackspace = useCallback((event) => {
         // Handle deleteing input value
-        console.log(event.key);
         if (event.key === "Backspace" || event.key === "Delete") {
             handleNewInputValue(0);
         }
