@@ -43,7 +43,6 @@ export default function ThemeSelector({ edit, setPageBGColor, setCellBGColor, se
                 .then((request) => {
                     setIsLoading(false);
                     if (request.ok) {
-                        console.log(request);
                         return request.json();
                     }
                     else {
@@ -65,7 +64,6 @@ export default function ThemeSelector({ edit, setPageBGColor, setCellBGColor, se
 
     // Function to get a theme using the theme name
     function getThemeByName(themeName) {
-        console.log("SENDING COLOR REQUEST!!");
         const getThemeURI = "http://colormind.io/api/";
         const params = {
             method: "post",
