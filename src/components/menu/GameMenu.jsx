@@ -5,6 +5,7 @@ import Modal from 'react-bootstrap/Modal';
 import Menu from './Menu.jsx';
 
 import { GameData } from "../../classes/GameData.js";
+import LoginLogoutBtn from '../buttons/LoginLogoutBtn.jsx';
 
 // Menu pages
 const MenuPages = {
@@ -53,37 +54,7 @@ function GameMenu(props) {
             default:
                 return "SUDOKU MENU";
         }
-    }
-
-    // Function to render either the login or logout button in navbar
-    function getLoginLogout() {
-        if (props.user !== null && props.user !== undefined) {
-            return (
-                <button 
-                    className="btn btn-secondary mx-3 shadow-sm float-end"
-                    onClick={() => {
-                        sessionStorage.clear();
-                        props.setUser(null);
-                        sessionStorage.setItem('gameMode', "");
-                        props.setGameMode("");
-                        props.setGameData(new GameData());
-                    }}
-                >Logout</button>
-            );
-        }
-        else {
-            return (
-                <button 
-                    className="btn btn-secondary mx-3 shadow-sm float-end"
-                    onClick={() => {
-                        props.setNewUser(false);
-                        sessionStorage.setItem('gameMode', "account");
-                        props.setGameMode("account");
-                    }}
-                >Login</button>
-            );
-        }
-    }
+    }    
 
     // Function to render the navbar when not on home page
     function getNavbar() {
@@ -97,7 +68,14 @@ function GameMenu(props) {
                             props.setInitialMenuPage(MenuPages.Main);
                         }}
                     >Menu</button>
-                    {getLoginLogout()}
+                    <LoginLogoutBtn
+                        className={"btn btn-secondary mx-3 shadow-sm float-end"}
+                        user={props.user}
+                        setUser={props.setUser}
+                        GameModes={props.GameModes}
+                        setGameMode={props.setGameMode}
+                        setNewUser={props.setNewUser}
+                    />
                 </div>
             );
         }

@@ -3,44 +3,13 @@ import SudokuBoard from "../components/boards/SudokuBoard";
 
 import "../styles/css/home.css";
 import "../styles/animation/clouds-animation.css";
+import LoginLogoutBtn from "../components/buttons/LoginLogoutBtn";
 
 const exampleBoard = [8,0,0,0,0,0,0,0,0,0,0,3,6,0,0,0,0,0,0,7,0,0,9,0,2,0,0,0,5,0,0,0,
                       7,0,0,0,0,0,0,0,4,5,7,0,0,0,0,0,1,0,0,0,3,0,0,0,1,0,0,0,0,6,8,0,
                       0,8,5,0,0,0,1,0,0,9,0,0,0,0,4,0,0];
 
 function SudokuHome(props) {
-
-    // Function to get either login or logout button
-    function getLoginLogout() {
-        if (props.user !== null && props.user !== undefined) {
-            return (
-                <button 
-                    type={"button"}
-                    className="btn btn-light mt-3 me-5 float-end"
-                    onClick={() => {
-                        sessionStorage.clear();
-                        props.setUser(null);
-                        sessionStorage.setItem('gameMode', "");
-                        props.setGameMode("");
-                    }}
-                >Logout</button>
-            );
-        }
-        else {
-            return (
-                <button 
-                    type={"button"}
-                    className="btn btn-light mt-3 me-5 float-end"
-                    onClick={() => {
-                        props.setNewUser(false);
-                        sessionStorage.setItem('gameMode', props.GameModes.Account);
-                        props.setGameMode(props.GameModes.Account);
-                    }}
-                >Login</button>
-            );
-        }
-    }
-
     return (
         <div className="container-fluid home-body">
             <div className="d-block position-fixed w-100">
@@ -55,7 +24,14 @@ function SudokuHome(props) {
                 >Menu</button>
 
                 {/* Login button */}
-                {getLoginLogout()}
+                <LoginLogoutBtn
+                    className={"btn btn-light mt-3 me-5 float-end"}
+                    user={props.user}
+                    setUser={props.setUser}
+                    GameModes={props.GameModes}
+                    setGameMode={props.setGameMode}
+                    setNewUser={props.setNewUser}
+                />
             </div>
             <div className="sky-background row">
                 {/* Header */}
