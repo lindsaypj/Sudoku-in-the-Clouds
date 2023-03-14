@@ -1,5 +1,5 @@
 import React, { useReducer, useState } from 'react';
-import { useEffect, useLayoutEffect } from 'react';
+import { useEffect, useLayoutEffect, useCallback } from 'react';
 
 import '../.././styles/css/cell.css'
 
@@ -7,6 +7,7 @@ import '../.././styles/css/cell.css'
 const COLORS = ["black", "blue", "red", "green", "yellow", "purple", "orange", "magenta",
                 "cyan", "lime", "pink", "crimson", "dark-purple", "dark-cyan", "gray", "navy", "fire"];
 const INPUT_PATTERNS = {4:"[0-4]", 9:"[0-9]", 16:"[0-9]|1[0-6]"};
+
 
 // Component Function
 function Cell({ cellIndex, size, value, cellUpdateCallback, boardIndex, textVisibility, disabled }) {
@@ -56,7 +57,6 @@ function Cell({ cellIndex, size, value, cellUpdateCallback, boardIndex, textVisi
             else {
                 setInputValue(newValue);
             }
-            
         }
         else {
             setInputValue("");
@@ -89,6 +89,23 @@ function Cell({ cellIndex, size, value, cellUpdateCallback, boardIndex, textVisi
     },[size]);
 
 
+    // CELL FOCUS/BLUR HANDLERS
+    const handleBackspace = useCallback((event) => {
+        // Handle deleteing input value
+        console.log(event.key);
+        if (event.key === "Backspace" || event.key === "Delete") {
+            handleNewInputValue(0);
+        }
+    }, []);
+
+    function onCellFocus(event) {
+        document.addEventListener('keydown', handleBackspace, false);
+    }
+
+    function onCellBlur(event) {
+        document.removeEventListener('keydown', handleBackspace, false);
+    }
+
     return (
         <div className='cellContainer'>
             <p className={"cellDisplay size-"+size + " cell-text-"+cellTextColor}>{displayValue}</p>
@@ -99,9 +116,11 @@ function Cell({ cellIndex, size, value, cellUpdateCallback, boardIndex, textVisi
                 tabIndex={boardIndex}
                 pattern={inputPattern}
                 value={inputValue}
+                onFocus={onCellFocus}
+                onBlur={onCellBlur}
                 onChange={(e) => {
                     if (!disabled) {
-                        handleNewInputValue(e.target.validity.valid ? e.target.value : 0)
+                        handleNewInputValue(e.target.validity.valid ? e.target.value : inputValue)
                     }   
                 }}
             />
