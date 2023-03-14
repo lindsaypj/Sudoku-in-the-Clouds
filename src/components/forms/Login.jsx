@@ -18,7 +18,7 @@ export default function Login(props) {
             return;
         }        
 
-        const loginURI = "http://"+window.location.origin+"/sudoku/users/"+username+"?token="+password;
+        const loginURI = window.location.origin+"/sudoku/users/"+username+"?token="+password;
         const params = {
             method: "get",
             mode: "cors",

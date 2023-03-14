@@ -141,7 +141,7 @@ export default function Account(
             user.preferences.cellTextColor = cellTextColor;
             user.preferences.boardBorderColor = boardBorderColor;
 
-            const updateURI = "http://"+window.location.origin+"/sudoku/users/"+user.username;
+            const updateURI = window.location.origin+"/sudoku/users/"+user.username;
             const params = {
                 method: "put",
                 mode: "cors",
@@ -193,7 +193,7 @@ export default function Account(
     function handleDeleteUser() {
         setDeleteConfim(false);
 
-        const deleteURI = "http://"+window.location.origin+"/sudoku/users/"+user.username;
+        const deleteURI = window.location.origin+"/sudoku/users/"+user.username;
         const params = {
             method: "delete",
             mode: "cors",

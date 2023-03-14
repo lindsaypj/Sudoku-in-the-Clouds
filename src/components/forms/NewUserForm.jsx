@@ -30,7 +30,7 @@ export default function NewUserForm({ setUser, setNewUser, returnAfterLogin, set
 
         // Create Fetch POST request for New User
         if (validity) {
-            const createUserURI = "http://"+window.location.origin+"/sudoku/users/"+username;
+            const createUserURI = window.location.origin+"/sudoku/users/"+username;
             const params = {
                 method: "post",
                 mode: "cors",
