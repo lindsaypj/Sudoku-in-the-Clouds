@@ -104,7 +104,7 @@ function Testing({ gameData, setGameData, setMenuVisibility }) {
 
             // Update count
             setNumBoards(count);
-            gameData.testing.numBoards = count; 
+            gameData.testing.numBoards = count;
             sessionStorage.setItem("game-data", JSON.stringify(gameData));
         }
     }
@@ -119,10 +119,19 @@ function Testing({ gameData, setGameData, setMenuVisibility }) {
 
     function handleBoardUpdate(boardIndex, newBoard) {
         // Update local state
-        boards[boardIndex] = newBoard;
+        const updatedBoards = boards.map((current, index) => {
+            if (boardIndex === index) {
+              // Set the updated board
+              return newBoard;
+            } else {
+              // The rest haven't changed
+              return current;
+            }
+          });
+        setBoards(updatedBoards);
 
         // Update GameData with new data
-        setBoardsBySize(boardSize, boards);
+        setBoardsBySize(boardSize, updatedBoards);
 
         // Store new GameData in session
         sessionStorage.setItem("game-data", JSON.stringify(gameData));
