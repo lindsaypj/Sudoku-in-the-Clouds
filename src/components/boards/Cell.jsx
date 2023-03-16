@@ -63,14 +63,16 @@ function Cell({ cellIndex, size, value, cellUpdateCallback, boardIndex, textVisi
         }
         
         // Set the Display value (prevent value from being "")
-        if (newValue === 0) {
+        if (newValue === 0 || newValue === "") {
             setDisplayValue(0);
+            // Update board state
+            cellUpdateCallback(cellIndex, 0);
         }
         else {
             setDisplayValue(newValue);
+            // Update board state
+            cellUpdateCallback(cellIndex, Number.parseInt(newValue));
         }
-        // Update board state
-        cellUpdateCallback(cellIndex, Number.parseInt(newValue));
 
         // Set cell colors
         setCellBGColor();
@@ -89,21 +91,21 @@ function Cell({ cellIndex, size, value, cellUpdateCallback, boardIndex, textVisi
     },[size]);
 
 
-    // // CELL FOCUS/BLUR HANDLERS
-    // const handleBackspace = useCallback((event) => {
-    //     // Handle deleteing input value
-    //     if (event.key === "Backspace" || event.key === "Delete") {
-    //         handleNewInputValue(0);
-    //     }
-    // }, []);
+    // CELL FOCUS/BLUR HANDLERS
+    const handleBackspace = useCallback((event) => {
+        // Handle deleteing input value
+        if (event.key === "Backspace" || event.key === "Delete") {
+            setInputValue(0);
+        }
+    }, []);
 
-    // function onCellFocus(event) {
-    //     document.addEventListener('keydown', handleBackspace, false);
-    // }
+    function onCellFocus(event) {
+        document.addEventListener('keydown', handleBackspace, false);
+    }
 
-    // function onCellBlur(event) {
-    //     document.removeEventListener('keydown', handleBackspace, false);
-    // }
+    function onCellBlur(event) {
+        document.removeEventListener('keydown', handleBackspace, false);
+    }
 
     return (
         <div className='cellContainer'>
@@ -115,11 +117,11 @@ function Cell({ cellIndex, size, value, cellUpdateCallback, boardIndex, textVisi
                 tabIndex={boardIndex}
                 pattern={inputPattern}
                 value={inputValue}
-                // onFocus={onCellFocus}
-                // onBlur={onCellBlur}
+                onFocus={onCellFocus}
+                onBlur={onCellBlur}
                 onChange={(e) => {
                     if (!disabled) {
-                        handleNewInputValue(e.target.validity.valid ? e.target.value : inputValue)
+                        handleNewInputValue(e.target.validity.valid ? e.target.value : inputValue);
                     }   
                 }}
             />
