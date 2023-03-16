@@ -25,9 +25,9 @@ export class GameColor {
             this.blue = color?.blue;
         }
         else {
-            this.red = null;
-            this.green = null;
-            this.blue = null;
+            this.red = 0;
+            this.green = 0;
+            this.blue = 0;
         }
 
         // Set Transparency

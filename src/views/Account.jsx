@@ -26,11 +26,11 @@ export default function Account(
 
     // Account data states
     let initialShowConflits;
-    let initialPageBG;
-    let initialCellBG;
-    let initialInfoText;
-    let initialCellText;
-    let initialBoardBorder;
+    let initialPageBG = new GameColor();
+    let initialCellBG = new GameColor();
+    let initialInfoText = new GameColor();
+    let initialCellText = new GameColor();
+    let initialBoardBorder = new GameColor();
     if (user !== undefined && user !== null) {
         initialShowConflits = user.settings.showConflicts;
         initialPageBG = new GameColor(user.preferences.pageBackgroundColor);
