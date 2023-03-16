@@ -23,12 +23,12 @@ html, body, .App, .modal-content, .theme-background {
 }
 
 /* Cell Text Color (RULE #3) */
-.board, .btn-secondary, .btn-primary {
+.board, .btn-secondary, .btn-primary, .cell-text-color {
     color: black;
 }
 
 /* Board Border Color (RULE #4) */
-.modal-header, .modal-footer, .board, .cell-row, .cellContainer, .cell, .cellDisplay, .cell-text-color {
+.modal-header, .modal-footer, .board, .cell-row, .cellContainer, .cell, .cellDisplay {
     border-color: black !important;
 }
 

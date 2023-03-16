@@ -36,7 +36,7 @@ export default function Notification({ message, isError }) {
             <Toast.Header className="cell-bg-color">
                 <strong className={"me-auto "+titleColor}>{title}</strong>
             </Toast.Header>
-            <Toast.Body className="cell-bg-color">{message}</Toast.Body>
+            <Toast.Body className="cell-bg-color cell-text-color">{message}</Toast.Body>
             </Toast>
         </ToastContainer>
     );
