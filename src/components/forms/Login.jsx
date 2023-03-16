@@ -75,7 +75,7 @@ export default function Login(props) {
                                     type={"text"}
                                     className="form-control border-0"
                                     value={username}
-                                    onChange={(e) => {setUsername(e.target.value)}}
+                                    onChange={(e) => {setUsername(e.target.value.trim())}}
                                     placeholder="Username" 
                                 />
                             </label>
@@ -86,7 +86,7 @@ export default function Login(props) {
                                     type={"password"}
                                     className="form-control border-0"
                                     value={password}
-                                    onChange={(e) => {setPassword(e.target.value)}}
+                                    onChange={(e) => {setPassword(e.target.value.trim())}}
                                     placeholder="Password" 
                                 />
                             </label>
