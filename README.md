@@ -1,70 +1,47 @@
-# Getting Started with Create React App
+# Suduko in the Clouds
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+![sudoku in the clouds home page](https://github.com/lindsaypj/Sudoku-in-the-Clouds/blob/main/sudoku-home.png)
 
-## Available Scripts
+## Project Information
 
-In the project directory, you can run:
+ - Author: Patrick Lindsay
+ - Class: SDEV 372 Software as a Service
+ - Winter 2023
 
-### `npm start`
+## Milestones
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+ - Project Creation
+ - Writing a Web API
+ - Consuming a Web API
+ - Integrating Public APIs
+ - Deploying to the Cloud
+ 
+## Project Description
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+This web application will allow you to play a Sudoku game from my library of
+Sudoku boards. I have always wanted to create a simple game, but I haven't 
+commited to a project. Sudoku is both simple and complex. I have a good 
+understanding of the game and I think it will be fun to develop using Spring.
+The more practical purpose of the project is to learn about REST API creation 
+and cloud deployment. The project is built using the Spring framework using 
+Spring Boot.
 
-### `npm test`
+## API Documentation
+<a href="https://documenter.getpostman.com/view/25408576/2s935kP5eZ" target="_blank" rel="noopener">https://documenter.getpostman.com/view/25408576/2s935kP5eZ</a>
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Additional Public API Use
+Colormind is a color pallet generator that provides randomly generated complementary
+colors. Sudoku in the Clouds uses the Colormind API to privide users with generated themes
+which dynamically style the page. Check out their site to see the how it works!
 
-### `npm run build`
+ - <a href="http://colormind.io/bootstrap/" target="_blank" rel="noopener">Colormind Bootstrap Example</a>
+ - <a href="http://colormind.io/api-access/" target="_blank" rel="noopener">Colormind API Documentation</a>
+ 
+## Cloud Deployments (Google Cloud Platform)
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+ - Compute Engine
+ - App Engine
+ - Google Kubernetes Engine (GKE)
+ 
+## Docker Image
+https://hub.docker.com/r/lindsaypj/sudoku-in-the-clouds
