@@ -19,12 +19,12 @@
 ## Project Description
 
 This web application will allow you to play a Sudoku game from my library of
-Sudoku boards. I have always wanted to create a simple game, but I haven't 
+Sudoku boards. I always wanted to create a simple game, but I haden't 
 commited to a project. Sudoku is both simple and complex. I have a good 
-understanding of the game and I think it will be fun to develop using Spring.
+understanding of the game, and it was fun to develop using Spring.
 The more practical purpose of the project is to learn about REST API creation 
-and cloud deployment. The project is built using the Spring framework using 
-Spring Boot.
+and cloud deployment. The API is built using the Spring framework using 
+Spring Boot and Java. The front-end application is build using React.js.
 
 ## API Documentation
 <a href="https://documenter.getpostman.com/view/25408576/2s935kP5eZ" target="_blank" rel="noopener">https://documenter.getpostman.com/view/25408576/2s935kP5eZ</a>
