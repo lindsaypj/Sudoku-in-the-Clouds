@@ -26,8 +26,7 @@ The more practical purpose of the project is to learn about REST API creation
 and cloud deployment. The API is built on the Spring framework using 
 Spring Boot and Java. The front-end application is build using React.js.
 
-Note: This repo is the front-end application that implements the API.
-You can view the Sudoku API at https://github.com/lindsaypj/Sudoku-API
+NOTE: This repo is a front-end application that implements the <a href="https://github.com/lindsaypj/Sudoku-API" target="_blank" rel="noopener">Sudoku API</a>.
 
 ## API Documentation
 <a href="https://documenter.getpostman.com/view/25408576/2s935kP5eZ" target="_blank" rel="noopener">https://documenter.getpostman.com/view/25408576/2s935kP5eZ</a>
