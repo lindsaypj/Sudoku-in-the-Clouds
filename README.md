@@ -1,4 +1,4 @@
-# Suduko in the Clouds (Front-End App)
+# Suduko in the Clouds
 
 ![sudoku in the clouds home page](https://github.com/lindsaypj/Sudoku-in-the-Clouds/blob/main/sudoku-home.png)
 
@@ -12,7 +12,7 @@
 
  - Project Creation
  - Writing a Web API
- - Consuming a Web API
+ - Consuming a Web API (this app is the consumer)
  - Integrating Public APIs
  - Deploying to the Cloud
  
@@ -23,10 +23,11 @@ Sudoku boards. I always wanted to create a simple game, but I haden't
 commited to a project. Sudoku is both simple and complex. I have a good 
 understanding of the game, and it was fun to develop using Spring.
 The more practical purpose of the project is to learn about REST API creation 
-and cloud deployment. The API is built using the Spring framework using 
+and cloud deployment. The API is built on the Spring framework using 
 Spring Boot and Java. The front-end application is build using React.js.
 
-THIS REPO CONTAINS THE FRONT-END APPLICATION
+Note: This repo is the front-end application that implements the API.
+You can view the Sudoku API at https://github.com/lindsaypj/Sudoku-API
 
 ## API Documentation
 <a href="https://documenter.getpostman.com/view/25408576/2s935kP5eZ" target="_blank" rel="noopener">https://documenter.getpostman.com/view/25408576/2s935kP5eZ</a>
