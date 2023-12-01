@@ -41,7 +41,7 @@ which dynamically style the page. Check out their site to see the how it works!
  
 ## Cloud Deployments (Google Cloud Platform)
 
- - Compute Engine
+ - [Compute Engine](http://34.122.23.24:8080/)
  - App Engine
  - Google Kubernetes Engine (GKE)
  
